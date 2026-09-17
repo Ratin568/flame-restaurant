@@ -1,0 +1,261 @@
+{
+  "Metadata": {
+    "appName": "Flame",
+    "title": "Flame — Flame-Grilled Burgers & Grill",
+    "description": "Experience real fire-grilled flavor. Order online, track your order live, and reserve your table at Flame."
+  },
+  "common": {
+    "brand": "Flame",
+    "orderNow": "Order Now",
+    "menu": "Menu",
+    "cart": "Cart",
+    "theme": "Theme",
+    "language": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "branches": "Branches",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "reserve": "Reserve a Table",
+    "login": "Sign in",
+    "account": "My Account"
+  },
+  "home": {
+    "hero": {
+      "badge": "Since 2015",
+      "title": "Taste the Fire",
+      "subtitle": "Handcrafted burgers, flame-grilled to perfection. Delivered hot to your door.",
+      "ctaPrimary": "Order Now",
+      "ctaSecondary": "Explore Menu"
+    },
+    "featured": {
+      "title": "Fan Favorites",
+      "subtitle": "The burgers everyone keeps coming back for"
+    }
+  },
+  "footer": {
+    "tagline": "Flame-grilled. Fire-fast.",
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "refund": "Refund Policy",
+    "newsletter": "Get hot deals 🔥",
+    "newsletterCta": "Subscribe",
+    "rights": "All rights reserved."
+  },
+  "product": {
+    "variant": "Choose size",
+    "modifiers": "Add extras",
+    "quantity": "Quantity",
+    "add": "Add to Cart",
+    "added": "Added ✓",
+    "prepTime": "min",
+    "notFound": "Product not found"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "emptyCta": "Browse Menu",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery Fee",
+    "free": "FREE",
+    "freeHint": "Add {amount} more for FREE delivery 🔥",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "remove": "Remove",
+    "checkoutSoon": "Online checkout is coming in the next phase 🚧"
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to order faster and track your orders",
+    "registerTitle": "Create your account",
+    "registerSubtitle": "Join Flame — earn loyalty points with every order 🔥",
+    "name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "loginCta": "Sign In",
+    "registerCta": "Create Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "logout": "Sign Out",
+    "errors": {
+      "invalidCredentials": "Invalid email or password",
+      "emailTaken": "This email is already registered",
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "nameTooShort": "Name must be at least 2 characters",
+      "invalidEmail": "Please enter a valid email address",
+      "generic": "Something went wrong. Please try again",
+      "tooManyAttempts": "Too many attempts. Please wait a few minutes and try again"
+    },
+    "account": {
+      "title": "My Account",
+      "profile": "Profile",
+      "memberSince": "Member since",
+      "loyaltyPoints": "Loyalty Points",
+      "points": "points",
+      "orders": "Orders",
+      "ordersEmpty": "No orders yet — your first flame-grilled order is waiting! 🔥"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "orderType": "Order Type",
+    "delivery": "🛵 Delivery",
+    "pickup": "🏠 Pickup",
+    "dineIn": "🍽️ Dine-in",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "address": "Delivery Address",
+    "addressPlaceholder": "Street, building, apartment...",
+    "city": "City",
+    "notes": "Order Notes (optional)",
+    "notesPlaceholder": "e.g. no onions, extra napkins...",
+    "coupon": "Coupon Code",
+    "couponApply": "Apply",
+    "couponApplied": "Coupon applied — you saved {amount}!",
+    "couponInvalid": "Invalid or expired coupon",
+    "summary": "Order Summary",
+    "placeOrder": "Place Order",
+    "cashOnly": "💳 Payment: Cash on delivery",
+    "required": "Please fill in all required fields",
+    "emptyCart": "Your cart is empty"
+  },
+  "orderSuccess": {
+    "title": "Order Confirmed! 🎉",
+    "subtitle": "Your delicious order is being prepared",
+    "orderNumber": "Order Number",
+    "trackCta": "Track Order",
+    "menuCta": "Back to Menu",
+    "loyaltyEarned": "🔥 You earned {points} loyalty points!"
+  },
+  "track": {
+    "title": "Track Order",
+    "placeholder": "Enter order number (e.g. FL-2025-00001)",
+    "cta": "Track",
+    "notFound": "Order not found — check the number",
+    "status": {
+      "PENDING": "Pending confirmation",
+      "CONFIRMED": "Confirmed",
+      "PREPARING": "Being prepared 👨‍🍳",
+      "READY": "Ready",
+      "SHIPPING": "On the way 🛵",
+      "DELIVERED": "Delivered ✅",
+      "CANCELLED": "Cancelled"
+    }
+  },
+  "reviews": {
+    "title": "Reviews",
+    "empty": "No reviews yet — be the first to review!",
+    "loginPrompt": "Sign in to write a review",
+    "rating": "Your rating",
+    "commentPlaceholder": "How was it? Share your experience...",
+    "submit": "Submit Review",
+    "submitted": "Thank you! Your review will appear after moderation.",
+    "already": "You have already reviewed this product.",
+    "error": "Something went wrong — please try again",
+    "basedOn": "Based on {count} review(s)"
+  },
+  "reserve": {
+    "title": "Reserve a Table",
+    "subtitle": "Book your spot — we'll keep the grill hot for you 🔥",
+    "branch": "Branch",
+    "date": "Date",
+    "time": "Time",
+    "guests": "Guests",
+    "guest": "guest",
+    "guests_suffix": "guests",
+    "notes": "Special requests (optional)",
+    "notesPlaceholder": "Birthday, window seat, high chair...",
+    "submit": "Reserve Table",
+    "success": "Reservation received! We'll confirm shortly.",
+    "error": "Something went wrong — please try again",
+    "selectBranch": "Select a branch",
+    "selectTime": "Select a time"
+  },
+  "branches": {
+    "title": "Our Branches",
+    "subtitle": "Find the nearest Flame to you",
+    "openMaps": "Open in Google Maps",
+    "call": "Call"
+  },
+  "about": {
+    "title": "About Flame",
+    "storyTitle": "Our Story",
+    "story1": "Flame started in 2015 with one simple idea: real fire makes real flavor. No shortcuts, no frozen patties — just handcrafted burgers and artisan pizzas over an open flame.",
+    "story2": "Today, from our kitchen to your door, every order carries the same promise: fresh ingredients, fire-grilled to order, delivered hot.",
+    "statsTitle": "Flame by the numbers",
+    "statOrders": "Orders served",
+    "statBranches": "Branches",
+    "statYears": "Years of fire",
+    "valuesTitle": "What we stand for",
+    "value1Title": "🔥 Real Fire",
+    "value1Text": "Every patty hits an open flame — never a flat-top.",
+    "value2Title": "🥬 Fresh Daily",
+    "value2Text": "Produce delivered every morning, buns baked in-house.",
+    "value3Title": "⚡ Fire-Fast",
+    "value3Text": "From grill to door in under 30 minutes on average."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Questions, feedback, catering — we answer fast",
+    "name": "Your Name",
+    "email": "Your Email",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent! We'll get back to you within 24 hours.",
+    "error": "Something went wrong — please try again"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about Flame",
+    "q1": "What are your opening hours?",
+    "a1": "We are open every day from 11:00 AM to 11:00 PM. On weekends we extend until midnight.",
+    "q2": "Do you offer delivery?",
+    "a2": "Yes! We deliver within a 5 km radius of each branch. Delivery is free on orders over $25.",
+    "q3": "How long does delivery take?",
+    "a3": "On average 25-35 minutes depending on your location and kitchen load. You can track your order live with your order number.",
+    "q4": "Do you have vegetarian options?",
+    "a4": "Absolutely. Look for the 🥬 badge on the menu — our Garden Veggie Burger and Margherita pizza are fan favorites.",
+    "q5": "Can I reserve a table?",
+    "a5": "Yes, use the Reserve a Table page or call your branch directly. We hold reservations for 15 minutes past booking time.",
+    "q6": "What allergens are in your food?",
+    "a6": "Common allergens like gluten, dairy, eggs and nuts are marked on each product page. Always tell our staff about severe allergies.",
+    "q7": "How do I use a coupon?",
+    "a7": "Enter your code at checkout. First order? Try WELCOME10 for 10% off.",
+    "q8": "Do you cater for events?",
+    "a8": "Yes — from 20 to 500 guests. Contact us with your event details and we will design a custom menu."
+  },
+  "legal": {
+    "termsTitle": "Terms of Service",
+    "privacyTitle": "Privacy Policy",
+    "refundTitle": "Refund Policy",
+    "lastUpdated": "Last updated",
+    "termsBody": "By using the Flame website and placing an order, you agree to these terms. Orders are subject to availability. Prices include applicable taxes. We reserve the right to cancel orders in case of pricing errors or stock unavailability, with a full refund. Account holders are responsible for keeping their credentials secure.",
+    "privacyBody": "We collect only the data needed to fulfill your orders: name, contact details, delivery addresses and order history. We never sell your data. Payments are processed by certified providers and card details never touch our servers. You may request deletion of your account and data at any time via contact.",
+    "refundBody": "If an item is missing, wrong, or arrives in poor condition, contact us within 2 hours of delivery with your order number for a full or partial refund. For dine-in and pickup, refunds are handled on the spot by the branch manager. Online payment refunds reach your account within 5-10 business days."
+  },
+  "blog": {
+    "title": "The Flame Journal",
+    "subtitle": "Grilling secrets, food stories & kitchen science",
+    "readMore": "Read article",
+    "views": "views",
+    "backToBlog": "All articles",
+    "notFound": "Article not found",
+    "byAuthor": "By",
+    "empty": "No articles yet — the grill is heating up! 🔥"
+  },
+  "menu": {
+    "title": "Our Menu",
+    "subtitle": "Everything is flame-grilled, fresh, and made to order",
+    "addToCart": "Add to Cart",
+    "spicy": "Spicy",
+    "veggie": "Veggie",
+    "kcal": "kcal"
+  }
+}

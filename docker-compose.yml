@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: flame-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: flame
+      POSTGRES_PASSWORD: flame_dev_password
+      POSTGRES_DB: flame
+    ports:
+      - "5432:5432"
+    volumes:
+      - flame_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flame"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: flame-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+volumes:
+  flame_pgdata:
