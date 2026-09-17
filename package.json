@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postinstall": "prisma generate",
     "typecheck": "tsc --noEmit",
-    "admin:make": "tsx scripts/make-admin.ts",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx prisma/seed.ts",
+    "admin:make": "tsx scripts/make-admin.ts"
   },
   "dependencies": {
     "@node-rs/argon2": "^2.2.1",
