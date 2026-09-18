@@ -1,13 +1,3 @@
----
-title: Flame — Restaurant Ordering Platform
-emoji: 🔥
-colorFrom: red
-colorTo: orange
-sdk: docker
-app_port: 3000
-pinned: false
----
-
 # 🔥 Flame — Restaurant Ordering Platform
 
 **Flame** is a production-grade, full-stack restaurant ordering platform designed and built from scratch.
@@ -240,8 +230,8 @@ The repository contains the complete database architecture, including:
 ```text
 prisma/
 ├── schema.prisma
-├── migrations/
-└── seed/
+├── seed.ts
+└── migrations/
 ```
 
 This allows the application to recreate its database structure and initial restaurant data.
@@ -277,7 +267,7 @@ See the [`LICENSE`](LICENSE) file for details.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Ratin Karami**
 
