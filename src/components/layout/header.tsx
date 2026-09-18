@@ -5,8 +5,8 @@ import {Button} from '@/components/ui/button';
 import {ThemeToggle} from './theme-toggle';
 import {LocaleSwitcher} from './locale-switcher';
 import {MobileNav} from './mobile-nav';
-import {CartButton} from './cart-button';   // ← بالای فایل
-import {AuthButton} from './auth-button';   // ← بالای فایل
+import {CartButton} from './cart-button';
+import {AuthButton} from './auth-button';
 
 export async function Header() {
   const t = await getTranslations('nav');
@@ -17,9 +17,9 @@ export async function Header() {
     {href: '/menu', label: t('menu')},
     {href: '/branches', label: t('branches')},
     {href: '/reserve', label: t('reserve')},
+    {href: '/blog', label: t('blog')},
     {href: '/about', label: t('about')},
     {href: '/contact', label: t('contact')},
-    {href: '/blog', label: t('blog')},
   ];
 
   return (
