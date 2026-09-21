@@ -18,8 +18,8 @@ export default async function LoginPage({params}: Props) {
 
   return (
     <section className="mx-auto w-full max-w-md">
-      <div className="relative overflow-hidden rounded-xl border border-border/50 bg-card/80 shadow-xl backdrop-blur-sm">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
+     <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#111111]/95 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm"> 
+        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.035] via-transparent to-white/[0.015]" />
         <div className="relative z-10 p-8 sm:p-9">
           <div className="mb-8 text-center">
             <h1 className="text-3xl font-semibold tracking-tight text-foreground">{t('loginTitle')}</h1>

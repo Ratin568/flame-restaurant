@@ -54,7 +54,7 @@ export function LoginForm() {
           autoComplete="email"
           disabled={pending}
           dir="ltr"
-          className="h-12 rounded-lg border-border/60 bg-background/60 px-3 text-sm placeholder:text-muted-foreground/60 focus-visible:ring-2"
+          className="h-12 rounded-lg border-border/60 bg-background/60 px-3 text-sm placeholder:text-muted-foreground/60 focus-visible:border-white focus-visible:ring-2 focus-visible:ring-white/25"
         />
       </div>
 
@@ -77,7 +77,7 @@ export function LoginForm() {
             autoComplete="current-password"
             disabled={pending}
             dir="ltr"
-            className="h-12 rounded-lg border-border/60 bg-background/60 px-3 pr-11 text-sm placeholder:text-muted-foreground/60 focus-visible:ring-2"
+            className="h-12 rounded-lg border-border/60 bg-background/60 px-3 pr-11 text-sm placeholder:text-muted-foreground/60 focus-visible:border-white focus-visible:ring-2 focus-visible:ring-white/25"
           />
           <button
             type="button"
