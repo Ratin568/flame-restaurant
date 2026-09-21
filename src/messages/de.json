@@ -34,6 +34,28 @@
     "featured": {
       "title": "Die Lieblinge unserer Gäste",
       "subtitle": "Die Burger, für die man immer wiederkommt"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — DER BURGER",
+        "title": "DER BURGER, DER BLEIBT.",
+        "description": "100 % Rind, frische Zutaten und kein langweiliger Bissen."
+      },
+      "scene2": {
+        "chapter": "02 — DIE HITZE",
+        "title": "DREH DIE HITZE AUF.",
+        "description": "Knusprige Kanten, rauchiger Geschmack und echtes Feuer."
+      },
+      "scene3": {
+        "chapter": "03 — DIE KARTE",
+        "title": "WÄHLE DEINEN FAVORITEN.",
+        "description": "Burger, Fries und Shakes. Wähle deinen nächsten Favoriten."
+      },
+      "scene4": {
+        "chapter": "04 — KOMM HUNGRIG",
+        "title": "HUNGRIG KOMMEN. GLÜCKLICH GEHEN.",
+        "description": "Dein nächstes Lieblingsessen ist nur einen Klick entfernt."
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "Punkte",
       "orders": "Bestellungen",
       "ordersEmpty": "Noch keine Bestellungen — Ihre erste Bestellung vom Grill wartet auf Sie! 🔥"
-    }
+    },
+    "termsAgree": "Ich stimme den Bedingungen zu",
+    "termsDescription": "Mit der Registrierung stimmen Sie unseren Nutzungsbedingungen und Datenschutzrichtlinien zu.",
+    "termsRequired": "Sie müssen den Bedingungen zustimmen"
   },
   "checkout": {
     "title": "Kasse",

@@ -34,6 +34,28 @@
     "featured": {
       "title": "Fan Favorites",
       "subtitle": "The burgers everyone keeps coming back for"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — THE BURGER",
+        "title": "THE BURGER THAT BITES BACK.",
+        "description": "100% beef. Fresh ingredients. Zero boring bites."
+      },
+      "scene2": {
+        "chapter": "02 — THE HEAT",
+        "title": "TURN UP THE HEAT.",
+        "description": "Crispy edges. Smoky flavor. A little fire never hurt."
+      },
+      "scene3": {
+        "chapter": "03 — THE MENU",
+        "title": "PICK YOUR FAVORITE.",
+        "description": "Burgers. Fries. Shakes. Choose your next craving."
+      },
+      "scene4": {
+        "chapter": "04 — COME HUNGRY",
+        "title": "COME HUNGRY LEAVE HAPPY",
+        "description": "Your next favorite meal is one click away."
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "points",
       "orders": "Orders",
       "ordersEmpty": "No orders yet — your first flame-grilled order is waiting! 🔥"
-    }
+    },
+    "termsAgree": "I agree to the terms",
+    "termsDescription": "By signing up, you agree to our Terms and Privacy Policy.",
+    "termsRequired": "You must agree to the terms"
   },
   "checkout": {
     "title": "Checkout",
@@ -257,5 +282,9 @@
     "notFound": "Article not found",
     "byAuthor": "By",
     "empty": "No articles yet — the grill is heating up! 🔥"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or may have moved."
   }
 }

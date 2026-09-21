@@ -34,6 +34,28 @@
     "featured": {
       "title": "Müşteri Favorileri",
       "subtitle": "İnsanların sürekli geri döndüğü burgerler"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — BURGER",
+        "title": "İZ BIRAKAN BURGER.",
+        "description": "%100 dana eti, taze malzemeler ve sıkıcı olmayan lokmalar."
+      },
+      "scene2": {
+        "chapter": "02 — ISI",
+        "title": "ATEŞİ YÜKSELT.",
+        "description": "Çıtır kenarlar, isli lezzet ve gerçek alev."
+      },
+      "scene3": {
+        "chapter": "03 — MENÜ",
+        "title": "FAVORİNİ SEÇ.",
+        "description": "Burger, patates ve shake. Bir sonraki isteğini seç."
+      },
+      "scene4": {
+        "chapter": "04 — AÇ GEL",
+        "title": "AÇ GEL. MUTLU AYRIL.",
+        "description": "Bir sonraki favori yemeğin sadece bir tık uzakta."
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "puan",
       "orders": "Siparişler",
       "ordersEmpty": "Henüz siparişiniz yok — ilk ateşte pişmiş siparişiniz sizi bekliyor! 🔥"
-    }
+    },
+    "termsAgree": "Şartları kabul ediyorum",
+    "termsDescription": "Hesap oluşturarak şartlarımızı ve gizlilik politikamızı kabul etmiş olursunuz.",
+    "termsRequired": "Şartları kabul etmelisiniz"
   },
   "checkout": {
     "title": "Ödeme",
@@ -257,5 +282,9 @@
     "notFound": "Yazı bulunamadı",
     "byAuthor": "Yazan:",
     "empty": "Henüz yazı yok — ızgara ısınıyor! 🔥"
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "description": "Aradığınız sayfa mevcut değil veya taşınmış olabilir."
   }
 }

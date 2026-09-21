@@ -34,6 +34,28 @@
     "featured": {
       "title": "大人気メニュー",
       "subtitle": "お客様が何度でも戻ってくる、看板バーガーたち"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — BURGER",
+        "title": "記憶に残る、炎のバーガー。",
+        "description": "100%ビーフ、新鮮な食材。退屈な一口はありません。"
+      },
+      "scene2": {
+        "chapter": "02 — HEAT",
+        "title": "炎をもっと熱く。",
+        "description": "香ばしい焼き目、燻製の風味、本物の火の力。"
+      },
+      "scene3": {
+        "chapter": "03 — MENU",
+        "title": "お気に入りを選ぼう。",
+        "description": "バーガー、フライ、シェイク。次の一品を選んで。"
+      },
+      "scene4": {
+        "chapter": "04 — COME HUNGRY",
+        "title": "お腹を空かせて、笑顔で帰ろう。",
+        "description": "次のお気に入りは、たった一クリックです。"
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "ポイント",
       "orders": "注文履歴",
       "ordersEmpty": "まだ注文がありません — 初めての炭火バーガーがお待ちかねです!🔥"
-    }
+    },
+    "termsAgree": "利用規約に同意します",
+    "termsDescription": "アカウントを作成すると、利用規約とプライバシーポリシーに同意したものとします。",
+    "termsRequired": "利用規約への同意が必要です"
   },
   "checkout": {
     "title": "お支払い",
@@ -257,5 +282,9 @@
     "notFound": "記事が見つかりません",
     "byAuthor": "著者:",
     "empty": "まだ記事がありません — 炭火が温まってきています!🔥"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "description": "お探しのページは存在しないか、移動された可能性があります。"
   }
 }

@@ -1,0 +1,22 @@
+.layer {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  pointer-events: none;
+
+  transform:
+    translate3d(
+      var(--x),
+      var(--y),
+      0
+    );
+
+  transform-style:
+    preserve-3d;
+
+  will-change:
+    transform;
+}

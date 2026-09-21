@@ -34,6 +34,28 @@
     "featured": {
       "title": "Favoritos do público",
       "subtitle": "Os hambúrgueres pelos quais todo mundo sempre volta"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — O HAMBÚRGUER",
+        "title": "O HAMBÚRGUER QUE MARCA.",
+        "description": "100% carne, ingredientes frescos e zero mordidas sem graça."
+      },
+      "scene2": {
+        "chapter": "02 — O CALOR",
+        "title": "AUMENTE O CALOR.",
+        "description": "Bordas crocantes, sabor defumado e fogo de verdade."
+      },
+      "scene3": {
+        "chapter": "03 — O MENU",
+        "title": "ESCOLHA O SEU FAVORITO.",
+        "description": "Hambúrgueres, batatas e milk-shakes. Escolha seu desejo."
+      },
+      "scene4": {
+        "chapter": "04 — VENHA COM FOME",
+        "title": "VENHA COM FOME. SAIA FELIZ.",
+        "description": "Seu próximo prato favorito está a um clique."
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "pontos",
       "orders": "Pedidos",
       "ordersEmpty": "Você ainda não tem pedidos — seu primeiro pedido na brasa está esperando! 🔥"
-    }
+    },
+    "termsAgree": "Concordo com os termos",
+    "termsDescription": "Ao criar uma conta, você concorda com nossos Termos e Política de Privacidade.",
+    "termsRequired": "Você deve concordar com os termos"
   },
   "checkout": {
     "title": "Finalizar pedido",

@@ -1,0 +1,1063 @@
+.visual {
+  position: relative;
+
+  width: min(560px, 72vw);
+  height: min(560px, 72vw);
+
+  display: grid;
+  place-items: center;
+
+  perspective: 1200px;
+
+  isolation: isolate;
+}
+
+/* =========================================
+   AMBIENT LIGHT
+   ========================================= */
+
+.ambientGlow {
+  position: absolute;
+
+  width: 72%;
+  height: 72%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 92, 20, 0.32) 0%,
+      rgba(255, 70, 15, 0.14) 35%,
+      rgba(255, 40, 0, 0.04) 60%,
+      transparent 75%
+    );
+
+  filter: blur(45px);
+
+  transform:
+    translateZ(-150px);
+
+  pointer-events: none;
+}
+
+.secondaryGlow {
+  position: absolute;
+
+  width: 35%;
+  height: 35%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 170, 80, 0.2),
+      transparent 70%
+    );
+
+  filter: blur(30px);
+
+  transform:
+    translate(
+      30px,
+      -80px
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================
+   HERO HALO
+   ========================================= */
+
+.heroHalo {
+  position: absolute;
+
+  width: 76%;
+  height: 76%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 95, 20, 0.28) 0%,
+      rgba(255, 70, 10, 0.13) 28%,
+      rgba(255, 45, 0, 0.04) 52%,
+      transparent 72%
+    );
+
+  filter: blur(32px);
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+/* =========================================
+   ORBITS
+   ========================================= */
+
+.orbit {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.09);
+
+  pointer-events: none;
+}
+
+.orbitOne {
+  width: 84%;
+  height: 34%;
+
+  transform:
+    rotate(-14deg)
+    translateZ(-80px);
+}
+
+.orbitTwo {
+  width: 68%;
+  height: 27%;
+
+  transform:
+    rotate(34deg)
+    translateZ(-100px);
+
+  opacity: 0.65;
+}
+
+.orbitThree {
+  width: 48%;
+  height: 20%;
+
+  transform:
+    rotate(-48deg)
+    translateZ(-120px);
+
+  opacity: 0.35;
+}
+
+/* =========================================
+   PARTICLES
+   ========================================= */
+
+.particles {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+}
+
+.particles span {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 210, 150, 0.75);
+
+  box-shadow:
+    0 0 10px
+    rgba(255, 100, 30, 0.55);
+
+  opacity: 0.45;
+}
+
+.particles span:nth-child(1) {
+  top: 19%;
+  left: 23%;
+}
+
+.particles span:nth-child(2) {
+  top: 30%;
+  right: 16%;
+
+  width: 2px;
+  height: 2px;
+}
+
+.particles span:nth-child(3) {
+  bottom: 26%;
+  left: 18%;
+
+  width: 2px;
+  height: 2px;
+}
+
+.particles span:nth-child(4) {
+  bottom: 18%;
+  right: 25%;
+}
+
+.particles span:nth-child(5) {
+  top: 14%;
+  right: 34%;
+
+  width: 2px;
+  height: 2px;
+}
+
+.particles span:nth-child(6) {
+  bottom: 34%;
+  right: 11%;
+
+  width: 2px;
+  height: 2px;
+}
+
+/* =========================================
+   SMOKE
+   ========================================= */
+
+.smoke {
+  position: absolute;
+
+  width: 70%;
+  height: 48%;
+
+  top: 2%;
+  left: 15%;
+
+  pointer-events: none;
+
+  z-index: 3;
+}
+
+.smoke span {
+  position: absolute;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 240, 220, 0.075),
+      transparent 70%
+    );
+
+  filter: blur(14px);
+
+  opacity: 0;
+
+  animation:
+    burgerSmoke
+    5s ease-in-out
+    infinite;
+}
+
+.smoke span:nth-child(1) {
+  width: 110px;
+  height: 150px;
+
+  left: 25%;
+  top: 35%;
+}
+
+.smoke span:nth-child(2) {
+  width: 85px;
+  height: 125px;
+
+  left: 48%;
+  top: 18%;
+
+  animation-delay:
+    -1.7s;
+}
+
+.smoke span:nth-child(3) {
+  width: 70px;
+  height: 110px;
+
+  left: 38%;
+  top: 5%;
+
+  animation-delay:
+    -3.2s;
+}
+
+@keyframes burgerSmoke {
+  0% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        0,
+        20px,
+        0
+      )
+      scale(0.8);
+  }
+
+  25% {
+    opacity: 0.45;
+  }
+
+  70% {
+    opacity: 0.18;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        18px,
+        -55px,
+        0
+      )
+      scale(1.25);
+  }
+}
+
+/* =========================================
+   BURGER
+   ========================================= */
+
+.burger,
+.heroBurger {
+  position: relative;
+
+  z-index: 5;
+
+  width: 350px;
+  height: 285px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transform:
+    rotate(-4deg)
+    translateZ(90px);
+
+  filter:
+    drop-shadow(
+      0 38px 30px
+      rgba(0, 0, 0, 0.42)
+    );
+
+  transition:
+    filter 400ms ease;
+
+  transform-style:
+    preserve-3d;
+}
+
+.heroBurger {
+  transform-origin:
+    center center;
+
+  filter:
+    drop-shadow(
+      0 42px 34px
+      rgba(0, 0, 0, 0.5)
+    );
+
+  will-change:
+    transform;
+}
+
+/* =========================================
+   TOP BUN
+   ========================================= */
+
+.topBun {
+  position: relative;
+
+  width: 315px;
+  height: 112px;
+
+  border-radius:
+    175px 175px
+    35px 35px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f1b35c 0%,
+      #dc8538 42%,
+      #b95822 78%,
+      #8e3b17 100%
+    );
+
+  box-shadow:
+    inset 0 -12px 20px
+      rgba(80, 25, 5, 0.2),
+
+    inset 0 5px 10px
+      rgba(255, 220, 150, 0.18),
+
+    0 8px 0
+      rgba(85, 28, 8, 0.35);
+
+  will-change:
+    transform;
+}
+
+/* =========================================
+   BUN HIGHLIGHT
+   ========================================= */
+
+.bunHighlight {
+  position: absolute;
+
+  top: 17px;
+  left: 52px;
+
+  width: 170px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 235, 180, 0.24),
+      transparent
+    );
+
+  filter: blur(7px);
+
+  transform:
+    rotate(-7deg);
+}
+
+/* =========================================
+   SESAME
+   ========================================= */
+
+.sesameLayer {
+  position: absolute;
+
+  inset: 0;
+}
+
+.sesameLayer i {
+  position: absolute;
+
+  width: 17px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    #f8d997;
+
+  box-shadow:
+    inset 1px 1px 2px
+      rgba(255,255,255,0.55),
+
+    0 1px 2px
+      rgba(80,30,5,0.3);
+
+  transform:
+    rotate(-25deg);
+
+  transition:
+    filter 500ms ease;
+}
+
+.sesameLayer i:nth-child(1) {
+  top: 30px;
+  left: 72px;
+}
+
+.sesameLayer i:nth-child(2) {
+  top: 20px;
+  left: 125px;
+
+  transform:
+    rotate(15deg);
+}
+
+.sesameLayer i:nth-child(3) {
+  top: 30px;
+  left: 180px;
+
+  transform:
+    rotate(-12deg);
+}
+
+.sesameLayer i:nth-child(4) {
+  top: 18px;
+  left: 225px;
+
+  transform:
+    rotate(22deg);
+}
+
+.sesameLayer i:nth-child(5) {
+  top: 52px;
+  left: 50px;
+
+  transform:
+    rotate(12deg);
+}
+
+.sesameLayer i:nth-child(6) {
+  top: 48px;
+  left: 110px;
+
+  transform:
+    rotate(-18deg);
+}
+
+.sesameLayer i:nth-child(7) {
+  top: 50px;
+  left: 170px;
+
+  transform:
+    rotate(15deg);
+}
+
+.sesameLayer i:nth-child(8) {
+  top: 46px;
+  left: 235px;
+
+  transform:
+    rotate(-20deg);
+}
+
+.sesameLayer i:nth-child(9) {
+  top: 72px;
+  left: 92px;
+
+  transform:
+    rotate(20deg);
+}
+
+.sesameLayer i:nth-child(10) {
+  top: 68px;
+  left: 190px;
+
+  transform:
+    rotate(-12deg);
+}
+
+.topBun:hover .sesameLayer i {
+  filter:
+    brightness(1.08);
+}
+
+/* =========================================
+   LETTUCE
+   ========================================= */
+
+.lettuce {
+  position: relative;
+
+  z-index: 3;
+
+  width: 305px;
+  height: 18px;
+
+  margin-top: -3px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #75a832,
+      #426c1c
+    );
+
+  box-shadow:
+    0 4px 8px
+    rgba(0,0,0,0.25);
+
+  will-change:
+    transform;
+}
+
+/* =========================================
+   CHEESE
+   ========================================= */
+
+.cheese {
+  position: relative;
+
+  z-index: 4;
+
+  width: 300px;
+  height: 27px;
+
+  margin-top: -2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #f9ce35,
+      #f2b51d
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      97% 100%,
+      80% 65%,
+      64% 100%,
+      45% 62%,
+      28% 100%,
+      12% 65%,
+      0 100%
+    );
+
+  filter:
+    drop-shadow(
+      0 4px 3px
+      rgba(0,0,0,0.2)
+    );
+
+  will-change:
+    transform;
+}
+
+/* =========================================
+   PATTY
+   ========================================= */
+
+.patty {
+  position: relative;
+
+  z-index: 2;
+
+  width: 305px;
+  height: 63px;
+
+  margin-top: -4px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      160deg,
+      #54271a,
+      #36150f 50%,
+      #210c08
+    );
+
+  box-shadow:
+    inset 0 8px 10px
+      rgba(255, 180, 100, 0.04),
+
+    inset 0 -9px 10px
+      rgba(0,0,0,0.3),
+
+    0 7px 9px
+      rgba(0,0,0,0.3);
+
+  will-change:
+    transform;
+}
+
+.patty::before,
+.patty::after {
+  content: "";
+
+  position: absolute;
+
+  height: 3px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0,0,0,0.35);
+}
+
+.patty::before {
+  width: 180px;
+
+  left: 35px;
+  top: 18px;
+
+  transform:
+    rotate(3deg);
+}
+
+.patty::after {
+  width: 130px;
+
+  right: 30px;
+  bottom: 16px;
+
+  transform:
+    rotate(-4deg);
+}
+
+.pattyHighlight {
+  position: absolute;
+
+  top: 9px;
+  left: 45px;
+
+  width: 110px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 190, 110, 0.08);
+
+  filter:
+    blur(3px);
+}
+
+/* =========================================
+   SAUCE
+   ========================================= */
+
+.sauce {
+  position: relative;
+
+  z-index: 5;
+
+  width: 285px;
+  height: 12px;
+
+  margin-top: -3px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      to right,
+      #9c2110,
+      #d13217,
+      #8a170b
+    );
+
+  box-shadow:
+    0 4px 7px
+    rgba(0,0,0,0.2);
+
+  will-change:
+    transform;
+}
+
+/* =========================================
+   BOTTOM BUN
+   ========================================= */
+
+.bottomBun {
+  width: 290px;
+  height: 48px;
+
+  margin-top: -2px;
+
+  border-radius:
+    12px 12px
+    40px 40px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #c96a29,
+      #9a4219
+    );
+
+  box-shadow:
+    inset 0 6px 8px
+      rgba(255,200,120,0.08),
+
+    0 8px 0
+      rgba(65, 20, 5, 0.25);
+
+  will-change:
+    transform;
+}
+
+/* =========================================
+   HERO LIGHT
+   ========================================= */
+
+.heroBurger::before {
+  content: "";
+
+  position: absolute;
+
+  width: 88%;
+  height: 45%;
+
+  top: 5%;
+  left: 6%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 215, 145, 0.1),
+      transparent 68%
+    );
+
+  filter:
+    blur(16px);
+
+  pointer-events: none;
+
+  z-index: 25;
+}
+
+.heroBurger::after {
+  content: "";
+
+  position: absolute;
+
+  width: 78%;
+  height: 26%;
+
+  left: 11%;
+  top: 14%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 220, 150, 0.08),
+      transparent 68%
+    );
+
+  filter:
+    blur(12px);
+
+  pointer-events: none;
+
+  z-index: 20;
+}
+
+/* =========================================
+   FOREGROUND EMBERS
+   ========================================= */
+
+.foregroundEmbers {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 30;
+}
+
+.foregroundEmbers i {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 175, 90, 0.9);
+
+  box-shadow:
+    0 0 14px
+    rgba(255, 80, 20, 0.9);
+
+  animation:
+    emberFloat
+    3.8s ease-in-out
+    infinite;
+}
+
+.foregroundEmbers i:nth-child(1) {
+  left: 20%;
+  top: 42%;
+}
+
+.foregroundEmbers i:nth-child(2) {
+  right: 18%;
+  top: 34%;
+
+  width: 3px;
+  height: 3px;
+
+  animation-delay:
+    -1s;
+}
+
+.foregroundEmbers i:nth-child(3) {
+  right: 28%;
+  bottom: 31%;
+
+  animation-delay:
+    -2.1s;
+}
+
+.foregroundEmbers i:nth-child(4) {
+  left: 31%;
+  bottom: 24%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-delay:
+    -2.8s;
+}
+
+@keyframes emberFloat {
+  0%,
+  100% {
+    opacity: 0.15;
+
+    transform:
+      translate3d(
+        0,
+        8px,
+        0
+      );
+  }
+
+  50% {
+    opacity: 0.9;
+
+    transform:
+      translate3d(
+        5px,
+        -24px,
+        0
+      );
+  }
+}
+
+/* =========================================
+   GROUND SHADOW
+   ========================================= */
+
+.groundShadow {
+  position: absolute;
+
+  bottom: 17%;
+
+  width: 55%;
+  height: 12%;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0,0,0,0.45);
+
+  filter:
+    blur(25px);
+
+  transform:
+    translateZ(-50px);
+
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease;
+}
+
+/* =========================================
+   LABEL
+   ========================================= */
+
+.label {
+  position: absolute;
+
+  right: 2%;
+  bottom: 11%;
+
+  z-index: 40;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  font-family:
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing:
+    0.16em;
+
+  opacity: 0.35;
+}
+
+.label span:last-child {
+  opacity: 0.55;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 700px) {
+  .visual {
+    width: 92vw;
+    height: 92vw;
+  }
+
+  .burger,
+  .heroBurger {
+    transform:
+      scale(0.72)
+      rotate(-4deg)
+      translateZ(60px);
+  }
+
+  .orbitOne {
+    width: 90%;
+  }
+
+  .heroHalo {
+    width: 90%;
+    height: 90%;
+  }
+
+  .smoke {
+    width: 90%;
+    left: 5%;
+  }
+
+  .foregroundEmbers {
+    opacity: 0.6;
+  }
+
+  .label {
+    right: 0;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .smoke span,
+  .foregroundEmbers i {
+    animation: none;
+  }
+
+  .burger,
+  .heroBurger,
+  .topBun,
+  .lettuce,
+  .cheese,
+  .patty,
+  .sauce,
+  .bottomBun,
+  .groundShadow {
+    transform: none !important;
+  }
+}

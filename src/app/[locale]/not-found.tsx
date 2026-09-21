@@ -1,13 +1,21 @@
-import {useTranslations} from 'next-intl';
-import {Link} from '@/i18n/navigation';
-import {Button} from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
+
+import { NotFoundGlitch } from '@/components/ui/be-ui-404-not-found';
 
 export default function NotFoundPage() {
   const t = useTranslations('nav');
+  const notFound = useTranslations('notFound');
+
   return (
-    <main className="flex min-h-svh flex-col items-center justify-center gap-4">
-      <h1 className="text-8xl font-black text-primary">404</h1>
-      <Link href="/"><Button>{t('home')}</Button></Link>
+    <main className="min-h-svh bg-[#090909] text-[#f4f0e8]">
+      <NotFoundGlitch
+        homeHref="/"
+        homeLabel={t('home')}
+        browseHref="/menu"
+        browseLabel={t('menu')}
+        title={notFound('title')}
+        description={notFound('description')}
+      />
     </main>
   );
 }

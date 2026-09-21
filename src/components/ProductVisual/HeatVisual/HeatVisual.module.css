@@ -1,0 +1,496 @@
+.visual {
+  position: relative;
+
+  width: min(560px, 72vw);
+  height: min(560px, 72vw);
+
+  display: grid;
+  place-items: center;
+
+  perspective: 1200px;
+
+  isolation: isolate;
+}
+
+/* =========================================
+   HEAT GLOW
+   ========================================= */
+
+.heatGlow {
+  position: absolute;
+
+  width: 58%;
+  height: 58%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 55, 5, 0.4) 0%,
+      rgba(255, 70, 10, 0.2) 30%,
+      rgba(255, 40, 0, 0.06) 58%,
+      transparent 74%
+    );
+
+  filter: blur(55px);
+
+  transform:
+    translateZ(-150px);
+}
+
+/* =========================================
+   ENERGY RINGS
+   ========================================= */
+
+.ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(255, 120, 40, 0.16);
+
+  pointer-events: none;
+}
+
+.ringOne {
+  width: 82%;
+  height: 28%;
+
+  transform:
+    rotate(-18deg)
+    translateZ(-100px);
+}
+
+.ringTwo {
+  width: 68%;
+  height: 22%;
+
+  transform:
+    rotate(28deg)
+    translateZ(-120px);
+
+  opacity: 0.6;
+}
+
+.ringThree {
+  width: 48%;
+  height: 16%;
+
+  transform:
+    rotate(-42deg)
+    translateZ(-140px);
+
+  opacity: 0.35;
+}
+
+/* =========================================
+   FIRE
+   ========================================= */
+
+.fire {
+  position: relative;
+
+  z-index: 5;
+
+  width: 300px;
+  height: 340px;
+
+  transform:
+    translateZ(80px);
+}
+
+/*
+ * Every flame layer uses the same basic
+ * shape but different scale/position.
+ *
+ * This creates depth without requiring
+ * a canvas or WebGL.
+ */
+
+.flameOuter,
+.flameMiddle,
+.flameInner,
+.flameCore {
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  transform-origin:
+    bottom center;
+
+  clip-path:
+    polygon(
+      50% 0%,
+      72% 19%,
+      65% 34%,
+      90% 54%,
+      78% 75%,
+      100% 100%,
+      0% 100%,
+      22% 75%,
+      10% 54%,
+      35% 34%,
+      28% 19%
+    );
+}
+
+/* Outer */
+
+.flameOuter {
+  width: 260px;
+  height: 330px;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    linear-gradient(
+      to top,
+      #b91508 0%,
+      #ef3210 45%,
+      #ff7419 78%,
+      #ff9a25 100%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 28px
+      rgba(255, 50, 0, 0.4)
+    );
+
+  animation:
+    flameOuter 1.8s
+    ease-in-out
+    infinite alternate;
+}
+
+/* Middle */
+
+.flameMiddle {
+  width: 190px;
+  height: 275px;
+
+  transform:
+    translateX(-50%)
+    translateY(8px);
+
+  background:
+    linear-gradient(
+      to top,
+      #ed2b08,
+      #ff5b0c 48%,
+      #ff9b22 80%,
+      #ffd05a
+    );
+
+  animation:
+    flameMiddle 1.35s
+    ease-in-out
+    infinite alternate;
+}
+
+/* Inner */
+
+.flameInner {
+  width: 125px;
+  height: 220px;
+
+  transform:
+    translateX(-50%)
+    translateY(16px);
+
+  background:
+    linear-gradient(
+      to top,
+      #ff6a08,
+      #ff9b18 50%,
+      #ffd34f 85%,
+      #ffe99a
+    );
+
+  animation:
+    flameInner 1s
+    ease-in-out
+    infinite alternate;
+}
+
+/* Core */
+
+.flameCore {
+  width: 70px;
+  height: 145px;
+
+  transform:
+    translateX(-50%)
+    translateY(30px);
+
+  background:
+    linear-gradient(
+      to top,
+      #ffb51b,
+      #ffd84f 55%,
+      #fff2a7
+    );
+
+  filter:
+    blur(2px);
+
+  animation:
+    flameCore 0.75s
+    ease-in-out
+    infinite alternate;
+}
+
+/* =========================================
+   FLAME MOTION
+   ========================================= */
+
+@keyframes flameOuter {
+  from {
+    transform:
+      translateX(-50%)
+      scaleX(0.96)
+      rotate(-2deg);
+  }
+
+  to {
+    transform:
+      translateX(-50%)
+      scaleX(1.04)
+      rotate(2deg);
+  }
+}
+
+@keyframes flameMiddle {
+  from {
+    transform:
+      translateX(-50%)
+      translateX(-5px)
+      scaleY(0.96)
+      rotate(-2deg);
+  }
+
+  to {
+    transform:
+      translateX(-50%)
+      translateX(5px)
+      scaleY(1.04)
+      rotate(2deg);
+  }
+}
+
+@keyframes flameInner {
+  from {
+    transform:
+      translateX(-50%)
+      scaleX(0.94)
+      rotate(2deg);
+  }
+
+  to {
+    transform:
+      translateX(-50%)
+      scaleX(1.06)
+      rotate(-2deg);
+  }
+}
+
+@keyframes flameCore {
+  from {
+    transform:
+      translateX(-50%)
+      scale(0.94);
+  }
+
+  to {
+    transform:
+      translateX(-50%)
+      scale(1.08);
+  }
+}
+
+/* =========================================
+   EMBERS
+   ========================================= */
+
+.embers {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 7;
+
+  pointer-events: none;
+}
+
+.embers span {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 184, 80, 0.9);
+
+  box-shadow:
+    0 0 10px
+    rgba(255, 70, 10, 0.8);
+
+  animation:
+    ember 2.2s
+    ease-out
+    infinite;
+}
+
+.embers span:nth-child(1) {
+  left: 39%;
+  bottom: 48%;
+
+  animation-delay:
+    0s;
+}
+
+.embers span:nth-child(2) {
+  left: 55%;
+  bottom: 55%;
+
+  animation-delay:
+    0.35s;
+}
+
+.embers span:nth-child(3) {
+  left: 31%;
+  bottom: 40%;
+
+  animation-delay:
+    0.7s;
+}
+
+.embers span:nth-child(4) {
+  left: 64%;
+  bottom: 42%;
+
+  animation-delay:
+    1s;
+}
+
+.embers span:nth-child(5) {
+  left: 46%;
+  bottom: 68%;
+
+  animation-delay:
+    1.3s;
+}
+
+.embers span:nth-child(6) {
+  left: 70%;
+  bottom: 58%;
+
+  animation-delay:
+    1.6s;
+}
+
+.embers span:nth-child(7) {
+  left: 27%;
+  bottom: 58%;
+
+  animation-delay:
+    1.9s;
+}
+
+.embers span:nth-child(8) {
+  left: 58%;
+  bottom: 74%;
+
+  animation-delay:
+    2.1s;
+}
+
+@keyframes ember {
+  0% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        0,
+        15px,
+        0
+      )
+      scale(0.5);
+  }
+
+  20% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        12px,
+        -90px,
+        0
+      )
+      scale(0.1);
+  }
+}
+
+/* =========================================
+   LABEL
+   ========================================= */
+
+.heatLabel {
+  position: absolute;
+
+  right: 2%;
+  bottom: 11%;
+
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  font-family:
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing:
+    0.16em;
+
+  opacity: 0.35;
+}
+
+.heatLabel span:last-child {
+  opacity: 0.55;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+  .visual {
+    width: 92vw;
+    height: 92vw;
+  }
+
+  .fire {
+    transform:
+      scale(0.72)
+      translateZ(50px);
+  }
+
+  .ringOne {
+    width: 90%;
+  }
+}

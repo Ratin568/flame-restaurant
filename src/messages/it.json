@@ -34,6 +34,28 @@
     "featured": {
       "title": "I preferiti dei clienti",
       "subtitle": "I burger per cui i nostri clienti tornano sempre"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — IL BURGER",
+        "title": "IL BURGER CHE LASCIA IL SEGNO.",
+        "description": "100% manzo, ingredienti freschi e zero morsi noiosi."
+      },
+      "scene2": {
+        "chapter": "02 — IL CALORE",
+        "title": "ALZA IL CALORE.",
+        "description": "Bordi croccanti, gusto affumicato e una vera fiamma."
+      },
+      "scene3": {
+        "chapter": "03 — IL MENU",
+        "title": "SCEGLI IL TUO PREFERITO.",
+        "description": "Burger, patatine e shake. Scegli la tua prossima voglia."
+      },
+      "scene4": {
+        "chapter": "04 — VIENI AFFAMATO",
+        "title": "VIENI AFFAMATO. VAI FELICE.",
+        "description": "Il tuo prossimo piatto preferito è a un clic."
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "punti",
       "orders": "Ordini",
       "ordersEmpty": "Non hai ancora ordini — il tuo primo ordine alla brace ti aspetta! 🔥"
-    }
+    },
+    "termsAgree": "Accetto i termini",
+    "termsDescription": "Creando un account, accetti i nostri Termini e la nostra Privacy Policy.",
+    "termsRequired": "Devi accettare i termini"
   },
   "checkout": {
     "title": "Checkout",
@@ -257,5 +282,9 @@
     "notFound": "Articolo non trovato",
     "byAuthor": "Di",
     "empty": "Ancora nessun articolo — la brace si sta scaldando! 🔥"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "description": "La pagina che stai cercando non esiste o potrebbe essere stata spostata."
   }
 }

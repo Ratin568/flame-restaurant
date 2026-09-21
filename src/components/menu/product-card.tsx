@@ -1,52 +1,177 @@
-import {getTranslations} from 'next-intl/server';
-import {Link} from '@/i18n/navigation';
-import {Badge} from '@/components/ui/badge';
-import {categoryEmoji} from './emoji';
-import {formatPrice} from '@/lib/money';
-import type {MenuProduct} from '@/features/menu/queries';
+'use client';
+
+import { useRouter } from '@/i18n/navigation';
+import { Flame, Leaf, FlameKindling } from 'lucide-react';
+
+import Button3D from '@/components/ui/button-3d';
+import { formatPrice } from '@/lib/money';
+import type { MenuProduct } from '@/features/menu/queries';
+
+import styles from './product-card.module.css';
 
 type Props = {
   product: MenuProduct;
   categorySlug: string;
   locale: string;
+
+  index?: number;
+
+  addToCartLabel: string;
+  spicyLabel: string;
+  veggieLabel: string;
+  kcalLabel: string;
 };
 
-export async function ProductCard({product, categorySlug, locale}: Props) {
-  const t = await getTranslations('menu');
+export function ProductCard({
+  product,
+  categorySlug,
+  locale,
+  index = 0,
+  addToCartLabel,
+  spicyLabel,
+  veggieLabel,
+  kcalLabel,
+}: Props) {
+  const router = useRouter();
+
+  const productPath = `/menu/${categorySlug}/${product.slug}`;
+
+  function openProduct() {
+    router.push(productPath);
+  }
 
   return (
-    <Link
-      href={`/menu/${categorySlug}/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:shadow-lg hover:shadow-primary/5"
+    <article
+      className={styles.card}
+      style={
+        {
+          '--card-index': index,
+        } as React.CSSProperties
+      }
     >
-      <div className="grid aspect-[16/10] place-items-center bg-gradient-to-br from-primary/15 via-card to-accent/10 text-6xl transition-transform duration-300 group-hover:scale-[1.02]">
-        {categoryEmoji[categorySlug] ?? '🍽️'}
-      </div>
+      {/* =======================================================
+          VISUAL
+      ======================================================= */}
 
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold leading-snug">{product.name}</h3>
-          <span className="whitespace-nowrap font-bold text-primary">
+      <button
+        type="button"
+        className={styles.visual}
+        onClick={openProduct}
+        aria-label={product.name}
+      >
+        <div className={styles.visualNoise} />
+
+        <div className={styles.visualGrid} />
+
+        <span className={styles.productNumber}>
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        <span className={styles.visualLabel}>
+          FLAME / ORIGINAL
+        </span>
+
+        <div className={styles.visualOrb}>
+          <span />
+          <span />
+          <span />
+        </div>
+
+        <div className={styles.visualIcon}>
+          <FlameKindling
+            strokeWidth={1}
+            aria-hidden="true"
+          />
+        </div>
+
+        {product.isFeatured && (
+          <span className={styles.featured}>
+            FEATURED
+          </span>
+        )}
+
+        <span className={styles.viewIndicator}>
+          VIEW
+          <span>↗</span>
+        </span>
+      </button>
+
+      {/* =======================================================
+          INFORMATION
+      ======================================================= */}
+
+      <div className={styles.body}>
+        <div className={styles.headingRow}>
+          <button
+            type="button"
+            className={styles.nameButton}
+            onClick={openProduct}
+          >
+            <span className={styles.categoryMarker}>
+              MENU / {String(index + 1).padStart(2, '0')}
+            </span>
+
+            <h3>{product.name}</h3>
+          </button>
+
+          <span className={styles.price}>
             {formatPrice(product.price, locale)}
           </span>
         </div>
 
-        <p className="line-clamp-2 text-sm text-muted-foreground">{product.description}</p>
+        <p className={styles.description}>
+          {product.description}
+        </p>
 
-        <div className="flex items-center gap-1.5 pt-1">
-          {product.isSpicy && <Badge variant="destructive">🌶️ {t('spicy')}</Badge>}
-          {product.isVegetarian && <Badge className="bg-green-600 text-white">🥬 {t('veggie')}</Badge>}
+        <div className={styles.metaRow}>
+          <div className={styles.badges}>
+            {product.isSpicy && (
+              <span className={styles.badge}>
+                <Flame
+                  size={12}
+                  strokeWidth={1.8}
+                />
+
+                {spicyLabel}
+              </span>
+            )}
+
+            {product.isVegetarian && (
+              <span className={styles.badge}>
+                <Leaf
+                  size={12}
+                  strokeWidth={1.8}
+                />
+
+                {veggieLabel}
+              </span>
+            )}
+          </div>
+
           {product.calories && (
-            <span className="ms-auto text-xs text-muted-foreground">
-              {product.calories} {t('kcal')}
+            <span className={styles.calories}>
+              {product.calories} {kcalLabel}
             </span>
           )}
         </div>
 
-        <div className="mt-2 w-full rounded-md bg-primary py-2 text-center text-sm font-semibold text-primary-foreground transition-opacity group-hover:opacity-90">
-          {t('addToCart')}
+        {/* =====================================================
+            BUTTON
+        ===================================================== */}
+
+        <div className={styles.action}>
+          <Button3D
+            variant="primary"
+            size="md"
+            className={styles.button}
+            onClick={openProduct}
+            ariaLabel={`${addToCartLabel}: ${product.name}`}
+          >
+            <span>{addToCartLabel}</span>
+            <span aria-hidden="true">↗</span>
+          </Button3D>
         </div>
       </div>
-    </Link>
+    </article>
   );
 }

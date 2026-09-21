@@ -34,6 +34,28 @@
     "featured": {
       "title": "Les préférés des clients",
       "subtitle": "Les burgers pour lesquels on revient toujours"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — LE BURGER",
+        "title": "LE BURGER QUI LAISSE UNE EMPREINTE.",
+        "description": "Bœuf 100 %, ingrédients frais et zéro bouchée ordinaire."
+      },
+      "scene2": {
+        "chapter": "02 — LA CHALEUR",
+        "title": "MONTEZ LE FEU.",
+        "description": "Bords croustillants, goût fumé et vraie flamme."
+      },
+      "scene3": {
+        "chapter": "03 — LE MENU",
+        "title": "CHOISISSEZ VOTRE FAVORI.",
+        "description": "Burgers, frites et shakes. Choisissez votre prochaine envie."
+      },
+      "scene4": {
+        "chapter": "04 — VENEZ AFFAMÉ",
+        "title": "VENEZ AFFAMÉ. REPARTEZ HEUREUX.",
+        "description": "Votre prochain plat préféré est à un clic."
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "points",
       "orders": "Commandes",
       "ordersEmpty": "Aucune commande pour l'instant — votre première commande flambée vous attend ! 🔥"
-    }
+    },
+    "termsAgree": "J'accepte les conditions",
+    "termsDescription": "En créant un compte, vous acceptez nos Conditions et notre Politique de confidentialité.",
+    "termsRequired": "Vous devez accepter les conditions"
   },
   "checkout": {
     "title": "Commande",
@@ -257,5 +282,9 @@
     "notFound": "Article introuvable",
     "byAuthor": "Par",
     "empty": "Pas encore d'articles — le grill chauffe ! 🔥"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a peut-être été déplacée."
   }
 }

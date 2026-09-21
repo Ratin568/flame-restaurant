@@ -1,0 +1,32 @@
+.container {
+  width: min(600px, 90vw);
+}
+
+.chapter {
+  display: block;
+
+  margin-bottom: 18px;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+
+  font-size: clamp(42px, 7vw, 92px);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.description {
+  max-width: 460px;
+
+  margin: 28px 0 0;
+
+  font-size: 17px;
+  line-height: 1.6;
+}

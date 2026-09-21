@@ -1,7 +1,6 @@
 import type {Metadata} from 'next';
 import {getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/navigation';
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {RegisterForm} from '@/components/auth/register-form';
 import {resolveLocaleParams} from '@/i18n/params';
 
@@ -18,20 +17,25 @@ export default async function RegisterPage({params}: Props) {
   const t = await getTranslations('auth');
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader className="text-center">
-        <CardTitle className="text-2xl font-black">{t('registerTitle')}</CardTitle>
-        <CardDescription>{t('registerSubtitle')}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <RegisterForm />
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          {t('hasAccount')}{' '}
-          <Link href="/login" className="font-semibold text-primary hover:underline">
-            {t('loginCta')}
-          </Link>
-        </p>
-      </CardContent>
-    </Card>
+    <section className="mx-auto w-full max-w-md">
+      <div className="relative overflow-hidden rounded-xl border border-border/50 bg-card/80 shadow-xl backdrop-blur-sm">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
+        <div className="relative z-10 p-8 sm:p-9">
+          <div className="mb-8 text-center">
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground">{t('registerTitle')}</h1>
+            <p className="mt-2 text-sm text-muted-foreground">{t('registerSubtitle')}</p>
+          </div>
+
+          <RegisterForm />
+
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            {t('hasAccount')}{' '}
+            <Link href="/login" className="font-semibold text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline">
+              {t('loginCta')}
+            </Link>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

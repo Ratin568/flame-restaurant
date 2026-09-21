@@ -8,8 +8,9 @@ export async function Footer() {
   const tn = await getTranslations('nav');
 
   return (
-    <footer className="border-t border-border/60">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="flame-footer">
+      <div className="flame-footer-inner">
+      <div className="flame-footer-grid">
         <div>
           <div className="flex items-center gap-2">
             <span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground">
@@ -21,34 +22,35 @@ export async function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold">{t('quickLinks')}</h3>
-          <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><Link href="/menu" className="transition-colors hover:text-foreground">{tn('menu')}</Link></li>
-            <li><Link href="/branches" className="transition-colors hover:text-foreground">{tn('branches')}</Link></li>
-            <li><Link href="/reserve" className="transition-colors hover:text-foreground">{tn('reserve')}</Link></li>
-            <li><Link href="/about" className="transition-colors hover:text-foreground">{tn('about')}</Link></li>
-            <li><Link href="/contact" className="transition-colors hover:text-foreground">{tn('contact')}</Link></li>
+          <h3 className="flame-footer-title">{t('quickLinks')}</h3>
+          <ul className="mt-3 space-y-2">
+            <li><Link href="/menu" className="flame-footer-link">{tn('menu')}</Link></li>
+            <li><Link href="/branches" className="flame-footer-link">{tn('branches')}</Link></li>
+            <li><Link href="/reserve" className="flame-footer-link">{tn('reserve')}</Link></li>
+            <li><Link href="/about" className="flame-footer-link">{tn('about')}</Link></li>
+            <li><Link href="/contact" className="flame-footer-link">{tn('contact')}</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold">{t('legal')}</h3>
-          <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><Link href="/legal/terms" className="transition-colors hover:text-foreground">{t('terms')}</Link></li>
-            <li><Link href="/legal/privacy" className="transition-colors hover:text-foreground">{t('privacy')}</Link></li>
-            <li><Link href="/legal/refund" className="transition-colors hover:text-foreground">{t('refund')}</Link></li>
+          <h3 className="flame-footer-title">{t('legal')}</h3>
+          <ul className="mt-3 space-y-2">
+            <li><Link href="/legal/terms" className="flame-footer-link">{t('terms')}</Link></li>
+            <li><Link href="/legal/privacy" className="flame-footer-link">{t('privacy')}</Link></li>
+            <li><Link href="/legal/refund" className="flame-footer-link">{t('refund')}</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold">{t('newsletter')}</h3>
+          <h3 className="flame-footer-title">{t('newsletter')}</h3>
           <div className="mt-3">
             <NewsletterForm />
           </div>
         </div>
       </div>
 
-      <div className="border-t border-border/60 py-4 text-center text-xs text-muted-foreground">
+      </div>
+      <div className="border-t border-white/10 py-4 text-center text-xs text-muted-foreground">
         © {new Date().getFullYear()} Flame — {t('rights')}
       </div>
     </footer>

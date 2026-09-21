@@ -1,0 +1,444 @@
+.scene {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  display: grid;
+  place-items: center;
+
+  padding: 5vw;
+
+  color: #f4f0e8;
+
+  perspective: 1800px;
+
+  isolation: isolate;
+}
+
+/* =========================================
+   DEPTH FIELD
+   ========================================= */
+
+.depthField {
+  position: absolute;
+  inset: -15%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+.lightBeam {
+  position: absolute;
+
+  width: 55vw;
+  height: 130vh;
+
+  left: 30%;
+  top: -15%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 82, 20, 0.06),
+      transparent
+    );
+
+  filter: blur(35px);
+
+  transform:
+    rotate(18deg);
+
+  opacity:
+    calc(
+      0.3 +
+      var(--intensity) * 0.7
+    );
+}
+
+.lightBeamTwo {
+  position: absolute;
+
+  width: 35vw;
+  height: 110vh;
+
+  right: -10%;
+  top: -10%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 180, 80, 0.04),
+      transparent
+    );
+
+  filter: blur(50px);
+
+  transform:
+    rotate(-22deg);
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.055;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+
+  mix-blend-mode:
+    soft-light;
+}
+
+/* =========================================
+   RINGS
+   ========================================= */
+
+.ring {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.045);
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  animation:
+    ringDrift
+    18s linear
+    infinite;
+}
+
+.ringOne {
+  width: 75vw;
+  height: 75vw;
+}
+
+.ringTwo {
+  width: 52vw;
+  height: 52vw;
+
+  opacity: 0.7;
+
+  animation-duration:
+    24s;
+
+  animation-direction:
+    reverse;
+}
+
+.ringThree {
+  width: 31vw;
+  height: 31vw;
+
+  opacity: 0.5;
+
+  animation-duration:
+    15s;
+}
+
+@keyframes ringDrift {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+}
+
+/* =========================================
+   CONTENT
+   ========================================= */
+
+.content {
+  position: relative;
+
+  z-index: 5;
+
+  width: min(1700px, 100%);
+
+  height: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.95fr)
+    minmax(420px, 1.05fr);
+
+  align-items: center;
+
+  gap: 2vw;
+
+  transform-style:
+    preserve-3d;
+}
+
+/* =========================================
+   TEXT
+   ========================================= */
+
+.textWrapper {
+  position: relative;
+
+  z-index: 10;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+
+  transform-origin:
+    left center;
+}
+
+.textGhost {
+  position: absolute;
+
+  left: -3vw;
+  top: 50%;
+
+  transform:
+    translateY(-50%)
+    translateZ(-200px);
+
+  font-size:
+    clamp(100px, 15vw, 260px);
+
+  font-weight:
+    900;
+
+  line-height:
+    0.75;
+
+  letter-spacing:
+    -0.08em;
+
+  white-space:
+    nowrap;
+
+  color:
+    rgba(255, 255, 255, 0.018);
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+}
+
+/* =========================================
+   VISUAL
+   ========================================= */
+
+.visualWrapper {
+  position: relative;
+
+  z-index: 6;
+
+  display: grid;
+  place-items: center;
+
+  min-width: 0;
+
+  transform-style:
+    preserve-3d;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+.visualGlow {
+  position: absolute;
+
+  width: 90%;
+  height: 90%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 70, 15, 0.16),
+      transparent 68%
+    );
+
+  filter:
+    blur(55px);
+
+  transform:
+    translateZ(-180px);
+
+  pointer-events:
+    none;
+}
+
+/* =========================================
+   EDGE LABEL
+   ========================================= */
+
+.edgeText {
+  position: absolute;
+
+  left: 2vw;
+  bottom: 3vh;
+
+  z-index: 30;
+
+  display: flex;
+
+  gap: 18px;
+
+  font-family:
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing:
+    0.2em;
+
+  opacity: 0.28;
+
+  transform:
+    rotate(-90deg)
+    translateX(-100%);
+
+  transform-origin:
+    left bottom;
+
+  pointer-events:
+    none;
+}
+
+.edgeText span:last-child {
+  opacity: 0.5;
+}
+
+/* =========================================
+   SCENE COLOR BEHAVIOR
+   ========================================= */
+
+.scene[data-scene="heat"] .visualGlow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 35, 0, 0.3),
+      transparent 65%
+    );
+
+  filter:
+    blur(70px);
+}
+
+.scene[data-scene="menu"] .visualGlow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 150, 50, 0.13),
+      transparent 70%
+    );
+}
+
+.scene[data-scene="cta"] .visualGlow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1),
+      transparent 65%
+    );
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 900px) {
+  .scene {
+    padding:
+      80px 24px 40px;
+  }
+
+  .content {
+    display: flex;
+
+    flex-direction:
+      column;
+
+    justify-content:
+      center;
+
+    gap: 20px;
+  }
+
+  .textWrapper {
+    width: 100%;
+
+    text-align:
+      center;
+
+    transform-origin:
+      center center;
+  }
+
+  .visualWrapper {
+    width: 100%;
+  }
+
+  .textGhost {
+    left: 50%;
+
+    transform:
+      translate(
+        -50%,
+        -50%
+      );
+
+    font-size:
+      25vw;
+  }
+
+  .edgeText {
+    display: none;
+  }
+
+  .ringOne {
+    width: 120vw;
+    height: 120vw;
+  }
+
+  .ringTwo {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .ringThree {
+    width: 65vw;
+    height: 65vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    animation: none;
+  }
+}

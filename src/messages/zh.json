@@ -34,6 +34,28 @@
     "featured": {
       "title": "人气之选",
       "subtitle": "让顾客一再回味的招牌汉堡"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — 汉堡",
+        "title": "让人难忘的火焰汉堡。",
+        "description": "精选牛肉、新鲜食材，每一口都不无聊。"
+      },
+      "scene2": {
+        "chapter": "02 — 火焰",
+        "title": "把火力拉满。",
+        "description": "酥脆边缘、烟熏香气与真实火焰。"
+      },
+      "scene3": {
+        "chapter": "03 — 菜单",
+        "title": "选出你的最爱。",
+        "description": "汉堡、薯条和奶昔，选好下一份心头好。"
+      },
+      "scene4": {
+        "chapter": "04 — 尽情享用",
+        "title": "带着饥饿来，带着满足走。",
+        "description": "下一份最爱的美食只差一次点击。"
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "积分",
       "orders": "订单",
       "ordersEmpty": "还没有订单——您的第一份炭火美味正等着您！🔥"
-    }
+    },
+    "termsAgree": "我同意相关条款",
+    "termsDescription": "注册即表示您同意我们的条款和隐私政策。",
+    "termsRequired": "您必须同意相关条款"
   },
   "checkout": {
     "title": "结算",
@@ -257,5 +282,9 @@
     "notFound": "文章未找到",
     "byAuthor": "作者：",
     "empty": "暂无文章——烤炉正在预热！🔥"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "您要查找的页面不存在，或者可能已被移动。"
   }
 }

@@ -34,6 +34,28 @@
     "featured": {
       "title": "Los favoritos de la casa",
       "subtitle": "Las hamburguesas por las que siempre vuelven"
+    },
+    "story": {
+      "scene1": {
+        "chapter": "01 — LA HAMBURGUESA",
+        "title": "LA HAMBURGUESA QUE DEJA HUELLA.",
+        "description": "100 % ternera, ingredientes frescos y cero bocados aburridos."
+      },
+      "scene2": {
+        "chapter": "02 — EL FUEGO",
+        "title": "SUBE EL FUEGO.",
+        "description": "Bordes crujientes, sabor ahumado y fuego de verdad."
+      },
+      "scene3": {
+        "chapter": "03 — EL MENÚ",
+        "title": "ELIGE TU FAVORITA.",
+        "description": "Hamburguesas, patatas y batidos. Elige tu próximo antojo."
+      },
+      "scene4": {
+        "chapter": "04 — VEN CON HAMBRE",
+        "title": "VEN CON HAMBRE. VETE FELIZ.",
+        "description": "Tu próxima comida favorita está a un clic."
+      }
     }
   },
   "footer": {
@@ -109,7 +131,10 @@
       "points": "puntos",
       "orders": "Pedidos",
       "ordersEmpty": "Aún no tienes pedidos — ¡tu primer pedido a la llama te espera! 🔥"
-    }
+    },
+    "termsAgree": "Acepto los términos",
+    "termsDescription": "Al registrarte, aceptas nuestros Términos y Política de privacidad.",
+    "termsRequired": "Debes aceptar los términos"
   },
   "checkout": {
     "title": "Finalizar pedido",
@@ -257,5 +282,9 @@
     "notFound": "Artículo no encontrado",
     "byAuthor": "Por",
     "empty": "Aún no hay artículos — ¡la parrilla se está calentando! 🔥"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe o puede haber sido trasladada."
   }
 }
