@@ -179,7 +179,6 @@ details { background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,
   .flame-page { width:min(100% - 28px,1200px); padding:60px 0; }
   .flame-footer-grid { grid-template-columns:1fr; gap:30px; }
 }
-
 /* Auth forms use a neutral black/white focus treatment */
 .auth-neutral input:focus-visible {
   border-color: rgba(255, 255, 255, 0.9) !important;

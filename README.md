@@ -259,6 +259,21 @@ The architecture is intended to represent a realistic production application rat
 
 ---
 
+## 🧪 Local Payment Testing
+
+Flame includes a development-only `MOCK` payment provider so the complete checkout lifecycle can be tested without a bank account or a live PSP account.
+
+Enable it only in development:
+
+```env
+PAYMENT_MOCK_ENABLED=true
+MOCK_WEBHOOK_SECRET=flame-local-test-secret
+```
+
+The mock flow simulates provider-hosted checkout and webhook outcomes: successful payment, failed payment, and canceled payment. It never moves real money and should remain disabled in production.
+
+For real deployments, customers connect their own supported PSP credentials (for example Stripe, PayPal, Adyen, Mollie, or ZarinPal where applicable).
+
 ## 📜 License
 
 This project is released under the **MIT License**.
@@ -275,3 +290,22 @@ Designed, built, and deployed end-to-end.
 
 **Live Demo:**  
 https://flame-restaurant-ruby.vercel.app/
+
+
+## 💳 International Payment Engine
+
+Flame uses a provider-agnostic payment architecture. A merchant can enable the payment provider(s) available to their own legal entity and account without changing checkout business logic. Supported adapters include Stripe, PayPal, Adyen, Mollie, ZarinPal and Cash.
+
+Configure credentials in `.env` / deployment secrets. Secrets stay server-side and are never exposed to the browser. Checkout uses provider-hosted payment flows where appropriate, idempotency keys, server-side verification and provider webhooks.
+
+### Supported provider configuration
+
+- `FLAME_DEFAULT_CURRENCY`: merchant checkout currency, for example `EUR`, `USD`, `GBP`, `CAD`, `CHF`.
+- Stripe: secret key + webhook secret.
+- PayPal: client ID + client secret + webhook ID.
+- Adyen: API key + merchant account + webhook HMAC key.
+- Mollie: API key.
+- ZarinPal: merchant ID + configured USD→IRR conversion.
+- Cash: optional manual payment method.
+
+The merchant remains responsible for having an eligible account with the selected payment provider and for configuring the provider-side webhook URL. Flame supplies the integration code; it does not turn Flame itself into a regulated payment institution.

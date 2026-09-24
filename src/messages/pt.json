@@ -1,22 +1,22 @@
 {
   "Metadata": {
     "appName": "Flame",
-    "title": "Flame — Hambúrgueres e Grill na Brasa",
-    "description": "Descubra o verdadeiro sabor da chama. Peça online, acompanhe seu pedido em tempo real e reserve sua mesa no Flame."
+    "title": "Flame â€” HambÃºrgueres e Grill na Brasa",
+    "description": "Descubra o verdadeiro sabor da chama. PeÃ§a online, acompanhe seu pedido em tempo real e reserve sua mesa no Flame."
   },
   "common": {
     "brand": "Flame",
     "orderNow": "Pedir Agora",
-    "menu": "Cardápio",
+    "menu": "CardÃ¡pio",
     "cart": "Carrinho",
     "theme": "Tema",
     "language": "Idioma"
   },
   "nav": {
-    "home": "Início",
-    "menu": "Cardápio",
+    "home": "InÃ­cio",
+    "menu": "CardÃ¡pio",
     "branches": "Unidades",
-    "about": "Sobre nós",
+    "about": "Sobre nÃ³s",
     "blog": "Blog",
     "contact": "Contato",
     "reserve": "Reservar mesa",
@@ -27,50 +27,50 @@
     "hero": {
       "badge": "Desde 2015",
       "title": "Prove o sabor do fogo",
-      "subtitle": "Hambúrgueres artesanais grelhados na chama, entregues quentinhos na sua porta.",
+      "subtitle": "HambÃºrgueres artesanais grelhados na chama, entregues quentinhos na sua porta.",
       "ctaPrimary": "Pedir Agora",
-      "ctaSecondary": "Ver o cardápio"
+      "ctaSecondary": "Ver o cardÃ¡pio"
     },
     "featured": {
-      "title": "Favoritos do público",
-      "subtitle": "Os hambúrgueres pelos quais todo mundo sempre volta"
+      "title": "Favoritos do pÃºblico",
+      "subtitle": "Os hambÃºrgueres pelos quais todo mundo sempre volta"
     },
     "story": {
       "scene1": {
-        "chapter": "01 — O HAMBÚRGUER",
-        "title": "O HAMBÚRGUER QUE MARCA.",
-        "description": "100% carne, ingredientes frescos e zero mordidas sem graça."
+        "chapter": "01 â€” O HAMBÃšRGUER",
+        "title": "O HAMBÃšRGUER QUE MARCA.",
+        "description": "100% carne, ingredientes frescos e zero mordidas sem graÃ§a."
       },
       "scene2": {
-        "chapter": "02 — O CALOR",
+        "chapter": "02 â€” O CALOR",
         "title": "AUMENTE O CALOR.",
         "description": "Bordas crocantes, sabor defumado e fogo de verdade."
       },
       "scene3": {
-        "chapter": "03 — O MENU",
+        "chapter": "03 â€” O MENU",
         "title": "ESCOLHA O SEU FAVORITO.",
-        "description": "Hambúrgueres, batatas e milk-shakes. Escolha seu desejo."
+        "description": "HambÃºrgueres, batatas e milk-shakes. Escolha seu desejo."
       },
       "scene4": {
-        "chapter": "04 — VENHA COM FOME",
+        "chapter": "04 â€” VENHA COM FOME",
         "title": "VENHA COM FOME. SAIA FELIZ.",
-        "description": "Seu próximo prato favorito está a um clique."
+        "description": "Seu prÃ³ximo prato favorito estÃ¡ a um clique."
       }
     }
   },
   "footer": {
     "tagline": "Na brasa. Na velocidade do fogo.",
-    "quickLinks": "Links rápidos",
-    "legal": "Jurídico",
-    "terms": "Termos de serviço",
-    "privacy": "Política de privacidade",
-    "refund": "Política de reembolso",
-    "newsletter": "Ofertas quentes 🔥",
+    "quickLinks": "Links rÃ¡pidos",
+    "legal": "JurÃ­dico",
+    "terms": "Termos de serviÃ§o",
+    "privacy": "PolÃ­tica de privacidade",
+    "refund": "PolÃ­tica de reembolso",
+    "newsletter": "Ofertas quentes",
     "newsletterCta": "Assinar",
     "rights": "Todos os direitos reservados."
   },
   "menu": {
-    "title": "Nosso cardápio",
+    "title": "Nosso cardÃ¡pio",
     "subtitle": "Tudo grelhado na chama: fresco e feito na hora",
     "addToCart": "Adicionar ao carrinho",
     "spicy": "Picante",
@@ -82,44 +82,44 @@
     "modifiers": "Adicione extras",
     "quantity": "Quantidade",
     "add": "Adicionar ao carrinho",
-    "added": "Adicionado ✓",
+    "added": "Adicionado âœ“",
     "prepTime": "min",
-    "notFound": "Produto não encontrado"
+    "notFound": "Produto nÃ£o encontrado"
   },
   "cart": {
     "title": "Seu carrinho",
-    "empty": "Seu carrinho está vazio",
-    "emptyCta": "Ver o cardápio",
+    "empty": "Seu carrinho estÃ¡ vazio",
+    "emptyCta": "Ver o cardÃ¡pio",
     "subtotal": "Subtotal",
     "delivery": "Taxa de entrega",
-    "free": "GRÁTIS",
-    "freeHint": "Falta só {amount} para a entrega GRÁTIS! 🔥",
+    "free": "GRÃTIS",
+    "freeHint": "Falta sÃ³ {amount} para a entrega GRÃTIS!",
     "total": "Total",
     "checkout": "Finalizar pedido",
     "remove": "Remover",
-    "checkoutSoon": "O pagamento online chega na próxima fase 🚧"
+    "checkoutSoon": "O pagamento online chega na prÃ³xima fase ðŸš§"
   },
   "auth": {
     "loginTitle": "Bem-vindo de volta",
-    "loginSubtitle": "Entre para pedir mais rápido e acompanhar seus pedidos",
+    "loginSubtitle": "Entre para pedir mais rÃ¡pido e acompanhar seus pedidos",
     "registerTitle": "Crie sua conta",
-    "registerSubtitle": "Junte-se à Flame — ganhe pontos de fidelidade a cada pedido",
+    "registerSubtitle": "FaÃ§a parte do Flame â€” ganhe pontos de fidelidade a cada pedido",
     "name": "Nome completo",
     "email": "E-mail",
     "password": "Senha",
     "confirmPassword": "Confirmar senha",
     "loginCta": "Entrar",
     "registerCta": "Criar conta",
-    "noAccount": "Não tem uma conta?",
-    "hasAccount": "Já tem conta?",
+    "noAccount": "NÃ£o tem uma conta?",
+    "hasAccount": "JÃ¡ tem conta?",
     "logout": "Sair",
     "errors": {
       "invalidCredentials": "E-mail ou senha incorretos",
-      "emailTaken": "Este e-mail já está cadastrado",
-      "passwordMismatch": "As senhas não conferem",
+      "emailTaken": "Este e-mail jÃ¡ estÃ¡ cadastrado",
+      "passwordMismatch": "As senhas nÃ£o conferem",
       "passwordTooShort": "A senha deve ter pelo menos 8 caracteres",
       "nameTooShort": "O nome deve ter pelo menos 2 caracteres",
-      "invalidEmail": "Digite um endereço de e-mail válido",
+      "invalidEmail": "Digite um endereÃ§o de e-mail vÃ¡lido",
       "tooManyAttempts": "Muitas tentativas. Aguarde alguns minutos e tente novamente",
       "generic": "Algo deu errado. Tente novamente"
     },
@@ -130,157 +130,182 @@
       "loyaltyPoints": "Pontos de fidelidade",
       "points": "pontos",
       "orders": "Pedidos",
-      "ordersEmpty": "Você ainda não tem pedidos — seu primeiro pedido na brasa está esperando! 🔥"
+      "ordersEmpty": "VocÃª ainda nÃ£o tem pedidos â€” seu primeiro pedido na brasa estÃ¡ esperando! ðŸ”¥"
     },
     "termsAgree": "Concordo com os termos",
-    "termsDescription": "Ao criar uma conta, você concorda com nossos Termos e Política de Privacidade.",
-    "termsRequired": "Você deve concordar com os termos"
+    "termsDescription": "Ao criar uma conta, vocÃª concorda com nossos Termos e PolÃ­tica de Privacidade.",
+    "termsRequired": "VocÃª deve concordar com os termos"
   },
   "checkout": {
     "title": "Finalizar pedido",
     "orderType": "Tipo de pedido",
-    "delivery": "🛵 Entrega",
-    "pickup": "🏠 Retirada",
-    "dineIn": "🍽️ No local",
+    "delivery": "ðŸ›µ Entrega",
+    "pickup": "ðŸ  Retirada",
+    "dineIn": "ðŸ½ï¸ No local",
     "name": "Nome completo",
-    "phone": "Número de telefone",
-    "address": "Endereço de entrega",
-    "addressPlaceholder": "Rua, número, apartamento...",
+    "phone": "NÃºmero de telefone",
+    "address": "EndereÃ§o de entrega",
+    "addressPlaceholder": "Rua, nÃºmero, apartamento...",
     "city": "Cidade",
-    "notes": "Observações do pedido (opcional)",
+    "notes": "ObservaÃ§Ãµes do pedido (opcional)",
     "notesPlaceholder": "ex.: sem cebola, guardanapos extras...",
     "coupon": "Cupom de desconto",
     "couponApply": "Aplicar",
-    "couponApplied": "Cupom aplicado — você economizou {amount}!",
-    "couponInvalid": "Cupom inválido ou expirado",
+    "couponApplied": "Cupom aplicado â€” vocÃª economizou {amount}!",
+    "couponInvalid": "Cupom invÃ¡lido ou expirado",
     "summary": "Resumo do pedido",
     "placeOrder": "Fazer pedido",
-    "cashOnly": "💳 Pagamento: em dinheiro na entrega",
-    "required": "Preencha todos os campos obrigatórios",
-    "emptyCart": "Seu carrinho está vazio"
+    "cashOnly": "ðŸ’³ Pagamento: em dinheiro na entrega",
+    "required": "Preencha todos os campos obrigatÃ³rios",
+    "emptyCart": "Seu carrinho estÃ¡ vazio",
+    "paymentMethod": "Payment method",
+    "securePayment": "Payment is verified securely by the selected provider.",
+    "payment_stripe": "Stripe",
+    "payment_stripe_desc": "Cards and supported wallets",
+    "payment_paypal": "PayPal",
+    "payment_paypal_desc": "PayPal and supported checkout methods",
+    "payment_adyen": "Adyen",
+    "payment_adyen_desc": "Global cards and local payment methods",
+    "payment_mollie": "Mollie",
+    "payment_mollie_desc": "Cards and European payment methods",
+    "payment_zarinpal": "ZarinPal",
+    "payment_zarinpal_desc": "Iranian payment gateway",
+    "payment_cash": "Cash",
+    "payment_cash_desc": "Pay in person / on delivery",
+    "payment_failed": "Payment failed. Please try again.",
+    "payment_canceled": "Payment was canceled.",
+    "payment_pending": "Payment is still being confirmed.",
+    "payment_invalid": "Invalid payment session.",
+    "payment_unavailable": "This payment method is not configured.",
+    "payment_mock": "Test Payment",
+    "payment_mock_desc": "Local development payment simulator"
   },
   "orderSuccess": {
-    "title": "Pedido confirmado! 🎉",
-    "subtitle": "Seu pedido delicioso já está sendo preparado",
-    "orderNumber": "Número do pedido",
+    "title": "Pedido confirmado! ðŸŽ‰",
+    "subtitle": "Seu pedido delicioso jÃ¡ estÃ¡ sendo preparado",
+    "orderNumber": "NÃºmero do pedido",
     "trackCta": "Acompanhar pedido",
-    "menuCta": "Voltar ao cardápio",
-    "loyaltyEarned": "🔥 Você ganhou {points} pontos de fidelidade!"
+    "menuCta": "Voltar ao cardÃ¡pio",
+    "loyaltyEarned": "ðŸ”¥ VocÃª ganhou {points} pontos de fidelidade!"
   },
   "track": {
     "title": "Acompanhar pedido",
-    "placeholder": "Digite o número do pedido (ex.: FL-2025-00001)",
+    "placeholder": "Digite o nÃºmero do pedido (ex.: FL-2025-00001)",
     "cta": "Acompanhar",
-    "notFound": "Pedido não encontrado — confira o número",
+    "notFound": "Pedido nÃ£o encontrado â€” confira o nÃºmero",
     "status": {
-      "PENDING": "Aguardando confirmação",
+      "PENDING": "Aguardando confirmaÃ§Ã£o",
       "CONFIRMED": "Confirmado",
-      "PREPARING": "Em preparo 👨‍🍳",
+      "PREPARING": "Em preparo ðŸ‘¨â€ðŸ³",
       "READY": "Pronto",
-      "SHIPPING": "A caminho 🛵",
-      "DELIVERED": "Entregue ✅",
+      "SHIPPING": "A caminho ðŸ›µ",
+      "DELIVERED": "Entregue âœ…",
       "CANCELLED": "Cancelado"
     }
   },
   "reviews": {
-    "title": "Avaliações",
-    "empty": "Ainda não há avaliações — seja o primeiro a avaliar!",
-    "loginPrompt": "Entre para escrever uma avaliação",
+    "title": "AvaliaÃ§Ãµes",
+    "empty": "Ainda nÃ£o hÃ¡ avaliaÃ§Ãµes â€” seja o primeiro a avaliar!",
+    "loginPrompt": "Entre para escrever uma avaliaÃ§Ã£o",
     "rating": "Sua nota",
-    "commentPlaceholder": "Como foi? Conte sua experiência...",
-    "submit": "Enviar avaliação",
-    "submitted": "Obrigado! Sua avaliação aparecerá após moderação.",
-    "already": "Você já avaliou este produto.",
-    "error": "Algo deu errado — tente novamente",
-    "basedOn": "Com base em {count} avaliação(ões)"
+    "commentPlaceholder": "Como foi? Conte sua experiÃªncia...",
+    "submit": "Enviar avaliaÃ§Ã£o",
+    "submitted": "Obrigado! Sua avaliaÃ§Ã£o aparecerÃ¡ apÃ³s moderaÃ§Ã£o.",
+    "already": "VocÃª jÃ¡ avaliou este produto.",
+    "error": "Algo deu errado â€” tente novamente",
+    "basedOn": "Com base em {count} avaliaÃ§Ã£o(Ãµes)"
   },
   "reserve": {
     "title": "Reservar mesa",
-    "subtitle": "Garanta seu lugar — deixamos a brasa acesa para você 🔥",
+    "subtitle": "Garanta seu lugar â€” deixamos a brasa acesa para vocÃª",
     "branch": "Unidade",
     "date": "Data",
-    "time": "Horário",
-    "guests": "Número de pessoas",
+    "time": "HorÃ¡rio",
+    "guests": "NÃºmero de pessoas",
     "guest": "pessoa",
     "guests_suffix": "pessoas",
     "notes": "Pedidos especiais (opcional)",
-    "notesPlaceholder": "aniversário, mesa na janela, cadeirinha...",
+    "notesPlaceholder": "aniversÃ¡rio, mesa na janela, cadeirinha...",
     "submit": "Reservar mesa",
     "success": "Reserva recebida! Vamos confirmar em breve.",
-    "error": "Algo deu errado — tente novamente",
+    "error": "Algo deu errado â€” tente novamente",
     "selectBranch": "Escolha uma unidade",
-    "selectTime": "Escolha um horário"
+    "selectTime": "Escolha um horÃ¡rio"
   },
   "branches": {
     "title": "Nossas unidades",
-    "subtitle": "Encontre o Flame mais perto de você",
+    "subtitle": "Encontre o Flame mais perto de vocÃª",
     "openMaps": "Abrir no Google Maps",
     "call": "Ligar"
   },
   "about": {
     "title": "Sobre o Flame",
-    "storyTitle": "Nossa história",
-    "story1": "O Flame nasceu em 2015 com uma ideia simples: fogo de verdade dá sabor de verdade. Sem atalhos, sem carne congelada — só hambúrgueres artesanais e pizzas autorais feitos sobre a chama aberta.",
-    "story2": "Hoje, da nossa cozinha até a sua porta, cada pedido carrega a mesma promessa: ingredientes frescos, grelhados na chama na hora e entregues quentes.",
-    "statsTitle": "O Flame em números",
+    "storyTitle": "Nossa histÃ³ria",
+    "story1": "O Flame nasceu em 2015 com uma ideia simples: fogo de verdade dÃ¡ sabor de verdade. Sem atalhos, sem carne congelada â€” sÃ³ hambÃºrgueres artesanais e pizzas autorais feitos sobre a chama aberta.",
+    "story2": "Hoje, da nossa cozinha atÃ© a sua porta, cada pedido carrega a mesma promessa: ingredientes frescos, grelhados na chama na hora e entregues quentes.",
+    "statsTitle": "O Flame em nÃºmeros",
     "statOrders": "Pedidos servidos",
     "statBranches": "Unidades",
     "statYears": "Anos de fogo",
     "valuesTitle": "O que defendemos",
-    "value1Title": "🔥 Fogo de verdade",
-    "value1Text": "Cada hambúrguer passa pela chama aberta — nunca pela chapa.",
-    "value2Title": "🥬 Fresco todo dia",
-    "value2Text": "Os legumes chegam toda manhã e os pães são assados por nós.",
-    "value3Title": "⚡ Veloz como o fogo",
-    "value3Text": "Da grelha à sua porta em menos de 30 minutos, em média."
+    "value1Title": "ðŸ”¥ Fogo de verdade",
+    "value1Text": "Cada hambÃºrguer passa pela chama aberta â€” nunca pela chapa.",
+    "value2Title": "ðŸ¥¬ Fresco todo dia",
+    "value2Text": "Os legumes chegam toda manhÃ£ e os pÃ£es sÃ£o assados por nÃ³s.",
+    "value3Title": "âš¡ Veloz como o fogo",
+    "value3Text": "Da grelha Ã  sua porta em menos de 30 minutos, em mÃ©dia."
   },
   "contact": {
     "title": "Fale conosco",
-    "subtitle": "Dúvidas, sugestões, buffets — respondemos rápido",
+    "subtitle": "DÃºvidas, sugestÃµes, buffets â€” respondemos rÃ¡pido",
     "name": "Seu nome",
     "email": "Seu e-mail",
     "message": "Mensagem",
     "send": "Enviar mensagem",
-    "success": "Mensagem enviada! Responderemos em até 24 horas.",
-    "error": "Algo deu errado — tente novamente"
+    "success": "Mensagem enviada! Responderemos em atÃ© 24 horas.",
+    "error": "Algo deu errado â€” tente novamente"
   },
   "faq": {
     "title": "Perguntas frequentes",
-    "subtitle": "Tudo o que você precisa saber sobre o Flame",
-    "q1": "Quais são os horários de funcionamento?",
-    "a1": "Estamos abertos todos os dias das 11h às 23h. Nos fins de semana, estendemos até a meia-noite.",
-    "q2": "Vocês fazem entrega?",
-    "a2": "Sim! Entregamos num raio de 5 km de cada unidade. A entrega é grátis para pedidos acima de US$ 25.",
+    "subtitle": "Tudo o que vocÃª precisa saber sobre o Flame",
+    "q1": "Quais sÃ£o os horÃ¡rios de funcionamento?",
+    "a1": "Estamos abertos todos os dias das 11h Ã s 23h. Nos fins de semana, estendemos atÃ© a meia-noite.",
+    "q2": "VocÃªs fazem entrega?",
+    "a2": "Sim! Entregamos num raio de 5 km de cada unidade. A entrega Ã© grÃ¡tis para pedidos acima de US$ 25.",
     "q3": "Quanto tempo leva a entrega?",
-    "a3": "Em média, de 25 a 35 minutos, dependendo da sua localização e do movimento da cozinha. Você pode acompanhar seu pedido em tempo real com o número do pedido.",
-    "q4": "Vocês têm opções vegetarianas?",
-    "a4": "Claro! Procure o selo 🥬 no cardápio — nosso Garden Veggie Burger e a pizza Margherita são queridinhos da casa.",
+    "a3": "Em mÃ©dia, de 25 a 35 minutos, dependendo da sua localizaÃ§Ã£o e do movimento da cozinha. VocÃª pode acompanhar seu pedido em tempo real com o nÃºmero do pedido.",
+    "q4": "VocÃªs tÃªm opÃ§Ãµes vegetarianas?",
+    "a4": "Claro! Procure o selo ðŸ¥¬ no cardÃ¡pio â€” nosso Garden Veggie Burger e a pizza Margherita sÃ£o queridinhos da casa.",
     "q5": "Posso reservar uma mesa?",
-    "a5": "Sim! Use a página «Reservar mesa» ou ligue diretamente para a unidade. As reservas ficam guardadas por 15 minutos após o horário marcado.",
-    "q6": "Quais alérgenos há nos seus pratos?",
-    "a6": "Os alérgenos mais comuns — glúten, leite, ovo e castanhas — estão indicados na página de cada produto. Para alergias graves, avise sempre nossa equipe.",
+    "a5": "Sim! Use a pÃ¡gina Â«Reservar mesaÂ» ou ligue diretamente para a unidade. As reservas ficam guardadas por 15 minutos apÃ³s o horÃ¡rio marcado.",
+    "q6": "Quais alÃ©rgenos hÃ¡ nos seus pratos?",
+    "a6": "Os alÃ©rgenos mais comuns â€” glÃºten, leite, ovo e castanhas â€” estÃ£o indicados na pÃ¡gina de cada produto. Para alergias graves, avise sempre nossa equipe.",
     "q7": "Como uso um cupom de desconto?",
-    "a7": "Digite o código na hora de finalizar o pedido. Primeiro pedido? Experimente o WELCOME10 e ganhe 10% de desconto.",
-    "q8": "Vocês fazem buffet para eventos?",
-    "a8": "Sim — de 20 a 500 convidados. Entre em contato com os detalhes do seu evento e montaremos um cardápio sob medida."
+    "a7": "Digite o cÃ³digo na hora de finalizar o pedido. Primeiro pedido? Experimente o WELCOME10 e ganhe 10% de desconto.",
+    "q8": "VocÃªs fazem buffet para eventos?",
+    "a8": "Sim â€” de 20 a 500 convidados. Entre em contato com os detalhes do seu evento e montaremos um cardÃ¡pio sob medida."
   },
   "legal": {
-    "termsTitle": "Termos de serviço",
-    "privacyTitle": "Política de privacidade",
-    "refundTitle": "Política de reembolso",
-    "lastUpdated": "Última atualização",
-    "termsBody": "Ao usar o site do Flame e fazer um pedido, você concorda com estes termos. Os pedidos estão sujeitos à disponibilidade. Os preços incluem os impostos aplicáveis. Reservamo-nos o direito de cancelar pedidos em caso de erro de preço ou indisponibilidade, com reembolso integral. Os titulares de conta são responsáveis por manter suas credenciais seguras.",
-    "privacyBody": "Coletamos apenas os dados necessários para atender seus pedidos: nome, dados de contato, endereços de entrega e histórico de pedidos. Nunca vendemos seus dados. Os pagamentos são processados por provedores certificados e os dados do cartão nunca chegam aos nossos servidores. Você pode solicitar a exclusão da sua conta e dos seus dados a qualquer momento pelo contato.",
-    "refundBody": "Se faltar um item, estiver errado ou chegar em más condições, entre em contato em até 2 horas após a entrega com o número do pedido para reembolso total ou parcial. No consumo no local e na retirada, o reembolso é feito na hora pelo gerente da unidade. Reembolsos de pagamentos online chegam à sua conta em 5 a 10 dias úteis."
+    "termsTitle": "Termos de serviÃ§o",
+    "privacyTitle": "PolÃ­tica de privacidade",
+    "refundTitle": "PolÃ­tica de reembolso",
+    "lastUpdated": "Ãšltima atualizaÃ§Ã£o",
+    "termsBody": "Ao usar o site do Flame e fazer um pedido, vocÃª concorda com estes termos. Os pedidos estÃ£o sujeitos Ã  disponibilidade. Os preÃ§os incluem os impostos aplicÃ¡veis. Reservamo-nos o direito de cancelar pedidos em caso de erro de preÃ§o ou indisponibilidade, com reembolso integral. Os titulares de conta sÃ£o responsÃ¡veis por manter suas credenciais seguras.",
+    "privacyBody": "Coletamos apenas os dados necessÃ¡rios para atender seus pedidos: nome, dados de contato, endereÃ§os de entrega e histÃ³rico de pedidos. Nunca vendemos seus dados. Os pagamentos sÃ£o processados por provedores certificados e os dados do cartÃ£o nunca chegam aos nossos servidores. VocÃª pode solicitar a exclusÃ£o da sua conta e dos seus dados a qualquer momento pelo contato.",
+    "refundBody": "Se faltar um item, estiver errado ou chegar em mÃ¡s condiÃ§Ãµes, entre em contato em atÃ© 2 horas apÃ³s a entrega com o nÃºmero do pedido para reembolso total ou parcial. No consumo no local e na retirada, o reembolso Ã© feito na hora pelo gerente da unidade. Reembolsos de pagamentos online chegam Ã  sua conta em 5 a 10 dias Ãºteis."
   },
-  "blog": {
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "A página que você procura não existe ou pode ter sido movida."
+  },  "blog": {
     "title": "O Journal do Flame",
-    "subtitle": "Segredos da grelha, histórias de cozinha e ciência do sabor",
+    "subtitle": "Segredos da grelha, histÃ³rias de cozinha e ciÃªncia do sabor",
     "readMore": "Ler o artigo",
-    "views": "visualizações",
+    "views": "visualizaÃ§Ãµes",
     "backToBlog": "Todos os artigos",
-    "notFound": "Artigo não encontrado",
+    "notFound": "Artigo nÃ£o encontrado",
     "byAuthor": "Por",
-    "empty": "Ainda não há artigos — a grelha está aquecendo! 🔥"
+    "empty": "Ainda nÃ£o hÃ¡ artigos â€” a grelha estÃ¡ aquecendo! ðŸ”¥"
   }
 }
+

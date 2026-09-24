@@ -24,7 +24,7 @@ export default async function AdminOrdersPage({
     where: filter ? {status: filter} : undefined,
     orderBy: {createdAt: 'desc'},
     take: 100,
-    include: {_count: {select: {items: true}}},
+    include: {_count: {select: {items: true}}, paymentTransactions: {orderBy: {createdAt: 'desc'}, take: 1}},
   });
 
   const fmtDate = (d: Date) =>
@@ -65,6 +65,7 @@ export default async function AdminOrdersPage({
                 <th className="px-4 py-3 text-start font-medium">Status</th>
                 <th className="px-4 py-3 text-start font-medium">Items</th>
                 <th className="px-4 py-3 text-start font-medium">Total</th>
+                <th className="px-4 py-3 text-start font-medium">Payment</th>
                 <th className="px-4 py-3 text-start font-medium">Date</th>
                 <th className="px-4 py-3 text-start font-medium">Change Status</th>
               </tr>
@@ -79,6 +80,7 @@ export default async function AdminOrdersPage({
                   <td className="px-4 py-3"><OrderStatusBadge status={order.status} /></td>
                   <td className="px-4 py-3">{order._count.items}</td>
                   <td className="px-4 py-3 font-semibold">{formatPriceUsd(Number(order.total))}</td>
+                  <td className="px-4 py-3 text-xs">{order.paymentStatus} · {order.paymentProvider ?? '—'}{order.paymentTransactions[0]?.providerTransactionId ? <span className="block text-muted-foreground">{order.paymentTransactions[0].providerTransactionId}</span> : null}</td>
                   <td className="px-4 py-3 text-muted-foreground">{fmtDate(order.createdAt)}</td>
                   <td className="px-4 py-3">
                     <form action={updateOrderStatusAction} className="flex gap-1">

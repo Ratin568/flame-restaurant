@@ -43,7 +43,7 @@ export default function Testimonials() {
               className={styles.testimonialCard}
               key={testimonial.name}
             >
-              <p>"{testimonial.text}"</p>
+              <p>&quot;{testimonial.text}&quot;</p>
 
               <div className={styles.testimonialAuthor}>
                 <strong>{testimonial.name}</strong>

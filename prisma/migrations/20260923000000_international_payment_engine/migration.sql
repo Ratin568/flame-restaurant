@@ -1,0 +1,12 @@
+CREATE TYPE "PaymentTransactionStatus" AS ENUM ('PENDING','PROCESSING','PAID','FAILED','CANCELED','REFUNDED');
+ALTER TYPE "PaymentProvider" ADD VALUE IF NOT EXISTS 'PAYPAL';
+ALTER TYPE "PaymentProvider" ADD VALUE IF NOT EXISTS 'ADYEN';
+ALTER TYPE "PaymentProvider" ADD VALUE IF NOT EXISTS 'MOLLIE';
+CREATE TABLE "payment_transactions" ("id" TEXT NOT NULL,"orderId" TEXT NOT NULL,"provider" "PaymentProvider" NOT NULL,"status" "PaymentTransactionStatus" NOT NULL DEFAULT 'PENDING',"amount" DECIMAL(12,2) NOT NULL,"currency" VARCHAR(3) NOT NULL,"idempotencyKey" TEXT NOT NULL,"providerSessionId" TEXT,"providerPaymentId" TEXT,"providerTransactionId" TEXT,"failureReason" TEXT,"metadata" JSONB,"paidAt" TIMESTAMP(3),"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,"updatedAt" TIMESTAMP(3) NOT NULL,CONSTRAINT "payment_transactions_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX "payment_transactions_idempotencyKey_key" ON "payment_transactions"("idempotencyKey");
+CREATE UNIQUE INDEX "payment_transactions_providerSessionId_key" ON "payment_transactions"("providerSessionId");
+CREATE UNIQUE INDEX "payment_transactions_providerPaymentId_key" ON "payment_transactions"("providerPaymentId");
+CREATE INDEX "payment_transactions_orderId_createdAt_idx" ON "payment_transactions"("orderId","createdAt");
+CREATE INDEX "payment_transactions_provider_status_idx" ON "payment_transactions"("provider","status");
+CREATE INDEX "payment_transactions_providerTransactionId_idx" ON "payment_transactions"("providerTransactionId");
+ALTER TABLE "payment_transactions" ADD CONSTRAINT "payment_transactions_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "orders"("id") ON DELETE CASCADE ON UPDATE CASCADE;

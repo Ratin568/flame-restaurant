@@ -18,7 +18,7 @@ export default async function LoginPage({params}: Props) {
 
   return (
     <section className="mx-auto w-full max-w-md">
-     <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#111111]/95 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm"> 
+      <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#111111]/95 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm">
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.035] via-transparent to-white/[0.015]" />
         <div className="relative z-10 p-8 sm:p-9">
           <div className="mb-8 text-center">
@@ -30,7 +30,7 @@ export default async function LoginPage({params}: Props) {
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
             {t('noAccount')}{' '}
-            <Link href="/register" className="font-semibold text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline">
+            <Link href="/register" className="font-semibold text-foreground underline-offset-4 transition-colors hover:text-white hover:underline">
               {t('registerCta')}
             </Link>
           </p>

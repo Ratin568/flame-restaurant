@@ -26,7 +26,6 @@ function ScrambleText({
 
   useEffect(() => {
     if (!active) {
-      setDisplay(text);
       return;
     }
 
@@ -67,7 +66,11 @@ function ScrambleText({
     };
   }, [active, text]);
 
-  return <span aria-hidden="true">{display}</span>;
+  return (
+    <span aria-hidden="true">
+      {active ? display : text}
+    </span>
+  );
 }
 
 export function NotFoundGlitch({
@@ -95,7 +98,6 @@ export function NotFoundGlitch({
 
   useEffect(() => {
     if (shouldReduceMotion) {
-      setGlitching(false);
       return;
     }
 
@@ -116,6 +118,8 @@ export function NotFoundGlitch({
       window.clearInterval(interval);
     };
   }, [shouldReduceMotion]);
+
+  const isGlitching = shouldReduceMotion ? false : glitching;
 
   return (
     <section className="relative flex min-h-svh w-full items-center justify-center overflow-hidden bg-[#090909] px-6 py-20 text-[#f4f0e8]">
@@ -189,7 +193,7 @@ export function NotFoundGlitch({
                 shouldReduceMotion
                   ? undefined
                   : {
-                      x: glitching ? [-2, 2, -1, 0] : 0,
+                      x: isGlitching ? [-2, 2, -1, 0] : 0,
                     }
               }
               transition={{
@@ -206,7 +210,7 @@ export function NotFoundGlitch({
                 shouldReduceMotion
                   ? undefined
                   : {
-                      x: glitching ? [0, -3, 3, -1, 0] : 0,
+                      x: isGlitching ? [0, -3, 3, -1, 0] : 0,
                     }
               }
               transition={{
@@ -223,8 +227,8 @@ export function NotFoundGlitch({
                   aria-hidden="true"
                   className="pointer-events-none absolute left-0 right-0 top-[46%] h-px bg-[#f4f0e8]/20"
                   animate={{
-                    opacity: glitching ? [0, 1, 0] : 0,
-                    scaleX: glitching ? [0.2, 1, 0.35] : 0.2,
+                    opacity: isGlitching ? [0, 1, 0] : 0,
+                    scaleX: isGlitching ? [0.2, 1, 0.35] : 0.2,
                   }}
                   transition={{
                     duration: 0.16,
@@ -235,7 +239,7 @@ export function NotFoundGlitch({
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-y-0 left-1/2 w-px bg-[#f4f0e8]/10"
                   animate={{
-                    opacity: glitching ? [0, 1, 0] : 0,
+                    opacity: isGlitching ? [0, 1, 0] : 0,
                   }}
                   transition={{
                     duration: 0.12,
@@ -266,7 +270,7 @@ export function NotFoundGlitch({
             }}
           >
             <h2 className="text-balance text-2xl font-bold tracking-[-0.035em] sm:text-3xl">
-              <ScrambleText text={title} active={glitching} />
+              <ScrambleText text={title} active={isGlitching} />
             </h2>
 
             <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-[#f4f0e8]/55 sm:text-base">

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {CalendarClock, ExternalLink, FileText, Flame, LayoutDashboard, Mail, Package, ShieldCheck, ShoppingCart, Star, Tag, Ticket} from 'lucide-react';
+import {CalendarClock, ExternalLink, FileText, Flame, LayoutDashboard, Mail, Package, ShieldCheck, ShoppingCart, CreditCard, Star, Tag, Ticket} from 'lucide-react';
 
 const links = [
   {href: '/admin', label: 'Dashboard', icon: LayoutDashboard},
@@ -15,6 +15,7 @@ const links = [
   {href: '/admin/reviews', label: 'Reviews', icon: Star},
   {href: '/admin/blog', label: 'Blog', icon: FileText},
   {href: '/admin/security', label: 'Security', icon: ShieldCheck},
+  {href: '/admin/payments', label: 'Payments', icon: CreditCard},
 ];
 export function AdminSidebar({adminName}: {adminName: string}) {
   const pathname = usePathname();
