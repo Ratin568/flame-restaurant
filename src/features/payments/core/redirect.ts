@@ -3,10 +3,12 @@ import type {Locale} from '@/i18n/routing';
 
 export function paymentSuccess(
   locale: Locale,
-  orderNumber: string,
+  trackingToken: string,
 ): never {
   return redirect(
-    `/order/success?order=${encodeURIComponent(orderNumber)}`,
+    `/order/success?token=${encodeURIComponent(
+      trackingToken,
+    )}`,
     locale,
   );
 }
