@@ -6,7 +6,7 @@ import {Link} from '@/i18n/navigation';
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 import {useCartStore} from '@/stores/cart';
-import {placeOrderAction} from './actions';
+import {placeOrderAction, validateCouponAction} from './actions';
 import {formatPrice} from '@/lib/money';
 import {
   CreditCard,
@@ -56,6 +56,8 @@ export function CheckoutForm({
     useState<string | null>(null);
   const [couponMsg, setCouponMsg] =
     useState<string | null>(null);
+  const [couponDiscount, setCouponDiscount] =
+    useState(0);
   const [paymentProvider, setPaymentProvider] =
     useState<PaymentProviderName>(
       enabledProviders[0] ?? 'CASH',
@@ -67,7 +69,7 @@ export function CheckoutForm({
   );
 
   const displayDiscount = appliedCoupon
-    ? subtotal * 0.1
+    ? couponDiscount
     : 0;
 
   const deliveryFee =
@@ -105,24 +107,29 @@ export function CheckoutForm({
     );
   }
 
-  function apply() {
-    if (!couponInput.trim()) return;
+  async function apply() {
+    const code = couponInput.trim().toUpperCase();
+    if (!code) return;
 
-    if (
-      couponInput.trim().toUpperCase() ===
-      'WELCOME10'
-    ) {
-      setAppliedCoupon('WELCOME10');
+    const fd = new FormData();
+    fd.set('coupon', code);
+    fd.set('items', JSON.stringify(items));
+    fd.set('locale', locale);
+    fd.set('orderType', orderType);
+
+    const result = await validateCouponAction(fd);
+
+    if (result.valid && result.code) {
+      setAppliedCoupon(result.code);
+      setCouponDiscount(result.discount);
       setCouponMsg(
         t('couponApplied', {
-          amount: formatPrice(
-            subtotal * 0.1,
-            locale,
-          ),
+          amount: formatPrice(result.discount, locale),
         }),
       );
     } else {
       setAppliedCoupon(null);
+      setCouponDiscount(0);
       setCouponMsg(t('couponInvalid'));
     }
   }
@@ -162,9 +169,12 @@ export function CheckoutForm({
                   <button
                     key={x}
                     type="button"
-                    onClick={() =>
-                      setOrderType(x)
-                    }
+                    onClick={() => {
+                      setOrderType(x);
+                      setAppliedCoupon(null);
+                      setCouponDiscount(0);
+                      setCouponMsg(null);
+                    }}
                     className={`rounded-lg border px-3 py-3 text-sm font-medium transition-colors ${
                       orderType === x
                         ? 'border-primary bg-primary/10 text-primary'

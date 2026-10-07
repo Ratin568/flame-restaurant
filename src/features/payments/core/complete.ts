@@ -49,10 +49,21 @@ export async function completePaymentTransaction(input: {
     await tx.order.update({where: {id: payment.orderId}, data: {paymentStatus: 'PAID'}});
 
     if (payment.order.couponCode) {
-      await tx.coupon.updateMany({
-        where: {code: payment.order.couponCode},
-        data: {usedCount: {increment: 1}},
-      });
+      // Consume the coupon with a single conditional UPDATE. PostgreSQL
+      // evaluates the capacity predicate and the increment atomically, so
+      // concurrent payment completions cannot push usedCount above maxUses.
+      const couponConsumed = await tx.$executeRaw`
+        UPDATE "coupons"
+        SET "usedCount" = "usedCount" + 1
+        WHERE "code" = ${payment.order.couponCode}
+          AND "isActive" = true
+          AND ("expiresAt" IS NULL OR "expiresAt" > NOW())
+          AND ("maxUses" IS NULL OR "usedCount" < "maxUses")
+      `;
+
+      if (couponConsumed !== 1) {
+        throw new Error('Coupon is no longer available');
+      }
     }
 
     if (payment.order.userId) {
