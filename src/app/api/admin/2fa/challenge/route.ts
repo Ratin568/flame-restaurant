@@ -1,6 +1,6 @@
 import {NextResponse} from 'next/server';
 import {db} from '@/lib/db';
-import {getSession, createSession} from '@/lib/auth/session';
+import {getSession, createSession, revokeCurrentSession} from '@/lib/auth/session';
 import {verifyTwoFactorToken} from '@/lib/auth/two-factor';
 import {rateLimit} from '@/lib/rate-limit';
 
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
 
   if (!user?.twoFactorSecret) {
     // 2FA ندارد → سشن تازه با تیک twoFactorOk
+    await revokeCurrentSession();
     await createSession({
       userId: session.userId,
       email: session.email,
@@ -39,6 +40,7 @@ export async function POST(request: Request) {
   const ok = verifyTwoFactorToken(user.twoFactorSecret, token);
   if (!ok) return NextResponse.json({error: 'Invalid'}, {status: 400});
 
+  await revokeCurrentSession();
   await createSession({
     userId: session.userId,
     email: session.email,

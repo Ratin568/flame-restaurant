@@ -102,6 +102,7 @@
   "auth": {
     "loginTitle": "Willkommen zurÃ¼ck",
     "loginSubtitle": "Melden Sie sich an, um schneller zu bestellen und Ihre Bestellungen zu verfolgen",
+    "verificationNotice": "Bitte prüfen Sie Ihren E-Mail-Posteingang und bestätigen Sie Ihre E-Mail-Adresse.",
     "registerTitle": "Konto erstellen",
     "registerSubtitle": "Werden Sie Teil von Flame â€” sammeln Sie mit jeder Bestellung Treuepunkte",
     "name": "Vor- und Nachname",
@@ -121,7 +122,14 @@
       "nameTooShort": "Der Name muss mindestens 2 Zeichen lang sein",
       "invalidEmail": "Bitte geben Sie eine gÃ¼ltige E-Mail-Adresse ein",
       "tooManyAttempts": "Zu viele Versuche. Bitte warten Sie einige Minuten und versuchen Sie es erneut",
-      "generic": "Es ist ein Problem aufgetreten. Bitte versuchen Sie es erneut"
+      "generic": "Es ist ein Problem aufgetreten. Bitte versuchen Sie es erneut",
+      "emailNotVerified": "Please verify your email before signing in.",
+      "invalidResetToken": "This password reset link is invalid or expired.",
+      "resetEmailSent": "If an account exists for that email, a reset link has been sent.",
+      "passwordReset": "Your password has been updated.",
+      "emailDeliveryFailed": "Die E-Mail konnte nicht gesendet werden. Bitte prüfen Sie die E-Mail-Konfiguration und versuchen Sie es erneut.",
+      "verificationSent": "Falls diese Adresse registriert ist, wurde eine Bestätigungs-E-Mail gesendet.",
+      "emailAlreadyVerified": "Diese E-Mail-Adresse wurde bereits verifiziert. Bitte melden Sie sich an."
     },
     "account": {
       "title": "Mein Konto",
@@ -130,11 +138,43 @@
       "loyaltyPoints": "Treuepunkte",
       "points": "Punkte",
       "orders": "Bestellungen",
-      "ordersEmpty": "Noch keine Bestellungen â€” Ihre erste Bestellung vom Grill wartet auf Sie! ðŸ”¥"
+      "ordersEmpty": "Noch keine Bestellungen â€” Ihre erste Bestellung vom Grill wartet auf Sie! ðŸ”¥",
+      "activeSessions": "Active Sessions",
+      "activeSessionsHint": "Manage the devices currently signed in to your account.",
+      "logoutAll": "Log out all devices",
+      "currentSession": "This device",
+      "revoke": "Revoke",
+      "loginHistory": "Login History",
+      "loginSuccess": "Successful sign-in",
+      "loginFailed": "Failed sign-in",
+      "unknownDevice": "Unbekanntes Gerät",
+      "unknownIp": "Unbekannte IP"
     },
     "termsAgree": "Ich stimme den Bedingungen zu",
     "termsDescription": "Mit der Registrierung stimmen Sie unseren Nutzungsbedingungen und Datenschutzrichtlinien zu.",
-    "termsRequired": "Sie mÃ¼ssen den Bedingungen zustimmen"
+    "termsRequired": "Sie mÃ¼ssen den Bedingungen zustimmen",
+    "forgotTitle": "Passwort vergessen?",
+    "forgotSubtitle": "Gib deine E-Mail ein und wir senden dir einen sicheren Link.",
+    "resetTitle": "Passwort zurücksetzen",
+    "resetSubtitle": "Wähle ein neues Passwort für dein Flame-Konto.",
+    "newPassword": "Neues Passwort",
+    "sendReset": "Link senden",
+    "sending": "Wird gesendet…",
+    "updatePassword": "Passwort aktualisieren",
+    "updating": "Wird aktualisiert…",
+    "passwordUpdated": "Passwort aktualisiert. Du kannst dich jetzt anmelden.",
+    "missingResetToken": "Reset-Token fehlt.",
+    "backToSignIn": "Zur Anmeldung",
+    "verifyTitle": "E-Mail bestätigen",
+    "verifySubtitle": "Gib deine E-Mail ein und wir senden einen neuen Bestätigungslink.",
+    "sendVerification": "Bestätigungs-E-Mail senden",
+    "verificationEmailSent": "Bestätigungs-E-Mail gesendet.",
+    "emailVerified": "E-Mail bestätigt!",
+    "accountReady": "Dein Flame-Konto ist jetzt bereit.",
+    "alreadyVerified": "Deine E-Mail wurde bereits bestätigt.",
+    "invalidVerification": "Ungültiger oder abgelaufener Link",
+    "requestNewVerification": "Bitte fordere eine neue Bestätigungs-E-Mail an.",
+    "resendVerification": "Bestätigungs-E-Mail erneut senden"
   },
   "checkout": {
     "title": "Kasse",
@@ -297,7 +337,8 @@
   "notFound": {
     "title": "Seite nicht gefunden",
     "description": "Die gesuchte Seite existiert nicht oder wurde möglicherweise verschoben."
-  },  "blog": {
+  },
+  "blog": {
     "title": "Das Flame-Journal",
     "subtitle": "Grill-Geheimnisse, Food-Stories & KÃ¼chenwissenschaft",
     "readMore": "Artikel lesen",
@@ -308,4 +349,3 @@
     "empty": "Noch keine Artikel â€” der Grill wird gerade heiÃŸ! ðŸ”¥"
   }
 }
-

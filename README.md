@@ -309,3 +309,49 @@ Configure credentials in `.env` / deployment secrets. Secrets stay server-side a
 - Cash: optional manual payment method.
 
 The merchant remains responsible for having an eligible account with the selected payment provider and for configuring the provider-side webhook URL. Flame supplies the integration code; it does not turn Flame itself into a regulated payment institution.
+
+## 🔐 Authentication hardening (v14)
+
+The authentication layer now supports:
+
+- Email verification with single-use, 24-hour hashed tokens
+- Password reset with single-use, 1-hour hashed tokens
+- Database-backed sessions with JWT session IDs
+- Current-session and all-device revocation
+- Active session management from the account page
+- Login history for successful and failed attempts
+- New-device/location detection with security email alerts
+- Password changes revoke every existing session
+
+After updating an existing database, run:
+
+```bash
+npm install
+npx prisma generate
+npx prisma migrate deploy
+npm run typecheck
+npm run build
+```
+
+### Transactional email setup
+
+Authentication emails are real backend emails; they are not simulated by the UI. Flame uses Resend on the server. Add these variables to your local `.env` (never expose the API key with `NEXT_PUBLIC_`):
+
+```env
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+RESEND_API_KEY="re_xxxxxxxxxxxxxxxxxxxxxxxxx"
+EMAIL_FROM="Flame <onboarding@resend.dev>"
+EMAIL_REPLY_TO=""
+```
+
+Then verify the provider independently before testing registration:
+
+```bash
+npm run email:test -- your-email@example.com
+```
+
+The command must report an email ID from Resend. If it fails, fix the Resend API key/sender configuration first. For production, configure `EMAIL_FROM` with an address on a domain verified in Resend.
+
+When a user registers, Flame creates a hashed, single-use verification token and sends the actual verification link through this provider. If delivery fails, registration no longer pretends that the message was sent; the server logs the provider error and the user can use the resend-verification flow after the mail service is fixed. Password-reset requests remain enumeration-safe: the UI returns the same generic response whether or not the address exists.
+
+For a fresh development database, `npm run db:push` also applies the updated schema.

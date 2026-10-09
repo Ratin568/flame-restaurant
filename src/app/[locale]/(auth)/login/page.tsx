@@ -12,8 +12,10 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return {title: t('loginCta')};
 }
 
-export default async function LoginPage({params}: Props) {
+export default async function LoginPage({params, searchParams}: Props & {searchParams?: Promise<{verification?: string}>}) {
   await resolveLocaleParams(params);
+  const query = searchParams ? await searchParams : {};
+  const verificationSent = query.verification === 'sent';
   const t = await getTranslations('auth');
 
   return (
@@ -24,6 +26,14 @@ export default async function LoginPage({params}: Props) {
           <div className="mb-8 text-center">
             <h1 className="text-3xl font-semibold tracking-tight text-foreground">{t('loginTitle')}</h1>
             <p className="mt-2 text-sm text-muted-foreground">{t('loginSubtitle')}</p>
+            {verificationSent && (
+              <div
+                className="mt-5 rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-4 text-left text-sm leading-6 text-emerald-400"
+                role="status"
+              >
+                {t('verificationNotice')}
+              </div>
+            )}
           </div>
 
           <LoginForm />

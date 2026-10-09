@@ -1,7 +1,7 @@
 import {NextResponse} from 'next/server';
 import {db} from '@/lib/db';
 import {getSession} from '@/lib/auth/session';
-import {createSession} from '@/lib/auth/session';
+import {createSession, revokeCurrentSession} from '@/lib/auth/session';
 import {verifyTwoFactorToken} from '@/lib/auth/two-factor';
 import {rateLimit} from '@/lib/rate-limit';
 
@@ -30,6 +30,7 @@ export async function POST(request: Request) {
   if (!ok) return NextResponse.json({ok: false}, {status: 400});
 
   // ✨ مهم: سشن تازه با تیک twoFactorOk — کاربر بدون وارد کردن مجدد کد، داخل ادمین می‌ماند
+  await revokeCurrentSession();
   await createSession({
     userId: session.userId,
     email: session.email,

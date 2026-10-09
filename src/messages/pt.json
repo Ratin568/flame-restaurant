@@ -102,6 +102,7 @@
   "auth": {
     "loginTitle": "Bem-vindo de volta",
     "loginSubtitle": "Entre para pedir mais rÃ¡pido e acompanhar seus pedidos",
+    "verificationNotice": "Verifique sua caixa de entrada e confirme seu endereço de e-mail.",
     "registerTitle": "Crie sua conta",
     "registerSubtitle": "FaÃ§a parte do Flame â€” ganhe pontos de fidelidade a cada pedido",
     "name": "Nome completo",
@@ -121,7 +122,14 @@
       "nameTooShort": "O nome deve ter pelo menos 2 caracteres",
       "invalidEmail": "Digite um endereÃ§o de e-mail vÃ¡lido",
       "tooManyAttempts": "Muitas tentativas. Aguarde alguns minutos e tente novamente",
-      "generic": "Algo deu errado. Tente novamente"
+      "generic": "Algo deu errado. Tente novamente",
+      "emailNotVerified": "Please verify your email before signing in.",
+      "invalidResetToken": "This password reset link is invalid or expired.",
+      "resetEmailSent": "If an account exists for that email, a reset link has been sent.",
+      "passwordReset": "Your password has been updated.",
+      "emailDeliveryFailed": "Não foi possível enviar o e-mail. Verifique a configuração do serviço de e-mail e tente novamente.",
+      "verificationSent": "Se este endereço estiver registrado, um e-mail de verificação foi enviado.",
+      "emailAlreadyVerified": "Este endereço de e-mail já foi verificado. Faça login."
     },
     "account": {
       "title": "Minha conta",
@@ -130,11 +138,43 @@
       "loyaltyPoints": "Pontos de fidelidade",
       "points": "pontos",
       "orders": "Pedidos",
-      "ordersEmpty": "VocÃª ainda nÃ£o tem pedidos â€” seu primeiro pedido na brasa estÃ¡ esperando! ðŸ”¥"
+      "ordersEmpty": "VocÃª ainda nÃ£o tem pedidos â€” seu primeiro pedido na brasa estÃ¡ esperando! ðŸ”¥",
+      "activeSessions": "Active Sessions",
+      "activeSessionsHint": "Manage the devices currently signed in to your account.",
+      "logoutAll": "Log out all devices",
+      "currentSession": "This device",
+      "revoke": "Revoke",
+      "loginHistory": "Login History",
+      "loginSuccess": "Successful sign-in",
+      "loginFailed": "Failed sign-in",
+      "unknownDevice": "Dispositivo desconhecido",
+      "unknownIp": "IP desconhecido"
     },
     "termsAgree": "Concordo com os termos",
     "termsDescription": "Ao criar uma conta, vocÃª concorda com nossos Termos e PolÃ­tica de Privacidade.",
-    "termsRequired": "VocÃª deve concordar com os termos"
+    "termsRequired": "VocÃª deve concordar com os termos",
+    "forgotTitle": "Esqueceu a senha?",
+    "forgotSubtitle": "Digite seu e-mail e enviaremos um link seguro.",
+    "resetTitle": "Redefinir senha",
+    "resetSubtitle": "Escolha uma nova senha para sua conta Flame.",
+    "newPassword": "Nova senha",
+    "sendReset": "Enviar link",
+    "sending": "Enviando…",
+    "updatePassword": "Atualizar senha",
+    "updating": "Atualizando…",
+    "passwordUpdated": "Senha atualizada. Você já pode entrar.",
+    "missingResetToken": "Token de redefinição ausente.",
+    "backToSignIn": "Voltar para entrar",
+    "verifyTitle": "Verifique seu e-mail",
+    "verifySubtitle": "Digite seu e-mail para receber um novo link de verificação.",
+    "sendVerification": "Enviar verificação",
+    "verificationEmailSent": "E-mail de verificação enviado.",
+    "emailVerified": "E-mail verificado!",
+    "accountReady": "Sua conta Flame está pronta.",
+    "alreadyVerified": "Seu e-mail já foi verificado.",
+    "invalidVerification": "Link inválido ou expirado",
+    "requestNewVerification": "Solicite um novo e-mail de verificação e tente novamente.",
+    "resendVerification": "Reenviar e-mail de verificação"
   },
   "checkout": {
     "title": "Finalizar pedido",
@@ -297,7 +337,8 @@
   "notFound": {
     "title": "Página não encontrada",
     "description": "A página que você procura não existe ou pode ter sido movida."
-  },  "blog": {
+  },
+  "blog": {
     "title": "O Journal do Flame",
     "subtitle": "Segredos da grelha, histÃ³rias de cozinha e ciÃªncia do sabor",
     "readMore": "Ler o artigo",
@@ -308,4 +349,3 @@
     "empty": "Ainda nÃ£o hÃ¡ artigos â€” a grelha estÃ¡ aquecendo! ðŸ”¥"
   }
 }
-

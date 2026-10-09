@@ -5,6 +5,7 @@ import {useLocale, useTranslations} from 'next-intl';
 import {Eye, EyeOff, Loader2} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {Input} from '@/components/ui/input';
+import {Link} from '@/i18n/navigation';
 import {loginAction, type AuthFormState} from '@/features/auth/actions';
 
 const initialState: AuthFormState = {};
@@ -20,6 +21,7 @@ export function LoginForm() {
     invalidEmail: t('errors.invalidEmail'),
     tooManyAttempts: t('errors.tooManyAttempts'),
     generic: t('errors.generic'),
+    emailNotVerified: t('errors.emailNotVerified'),
   };
 
   return (
@@ -63,6 +65,7 @@ export function LoginForm() {
           <label htmlFor="login-password" className="text-sm font-medium text-foreground">
             {t('password')}
           </label>
+          <Link href="/forgot-password" className="text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">Forgot password?</Link>
         </div>
 
         <div className="relative">

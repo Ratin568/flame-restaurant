@@ -5,6 +5,7 @@ import {LogoutButton} from '@/components/auth/logout-button';
 import {getSession} from '@/lib/auth/session';
 import {db} from '@/lib/db';
 import {resolveLocaleParams} from '@/i18n/params';
+import {SessionManager} from '@/components/auth/session-manager';
 
 export default async function AccountPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await resolveLocaleParams(params);
@@ -70,6 +71,7 @@ export default async function AccountPage({params}: {params: Promise<{locale: st
           </CardContent>
         </Card>
       </div>
+      <SessionManager locale={locale} />
     </main>
   );
 }

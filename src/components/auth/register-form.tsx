@@ -19,7 +19,7 @@ export function RegisterForm() {
   const [termsError, setTermsError] = useState(false);
 
   const errorMap: Record<string, string> = {
-    emailTaken: t('errors.emailTaken'),
+    emailAlreadyVerified: t('errors.emailAlreadyVerified'),
     passwordMismatch: t('errors.passwordMismatch'),
     passwordTooShort: t('errors.passwordTooShort'),
     nameTooShort: t('errors.nameTooShort'),
