@@ -2,6 +2,8 @@ import type {Metadata} from 'next';
 import {getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {resolveLocaleParams} from '@/i18n/params';
+import {buildAlternates} from '@/lib/seo/metadata';
+import type {Locale} from '@/i18n/routing';
 
 type Props = {params: Promise<{locale: string; doc: string}>};
 
@@ -17,7 +19,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {locale, doc} = await resolveLocaleParams(params);
   const valid = doc in DOCS;
   const t = await getTranslations({locale, namespace: 'legal'});
-  return {title: valid ? t(DOCS[doc as keyof typeof DOCS].titleKey) : 'Legal'};
+  return {title: valid ? t(DOCS[doc as keyof typeof DOCS].titleKey) : 'Legal', alternates: buildAlternates(`/legal/${doc}`, locale as Locale)};
 }
 
 export default async function LegalPage({params}: Props) {

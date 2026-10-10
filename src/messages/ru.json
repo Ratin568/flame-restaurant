@@ -218,7 +218,9 @@
     "payment_invalid": "Invalid payment session.",
     "payment_unavailable": "This payment method is not configured.",
     "payment_mock": "Test Payment",
-    "payment_mock_desc": "Local development payment simulator"
+    "payment_mock_desc": "Local development payment simulator",
+    "email": "Электронная почта для уведомлений о заказе (необязательно)",
+    "emailPlaceholder": "you@example.com"
   },
   "orderSuccess": {
     "title": "Заказ подтверждён! 🎉",
@@ -270,7 +272,9 @@
     "success": "Бронирование получено! Скоро подтвердим.",
     "error": "Что-то пошло не так — попробуйте ещё раз",
     "selectBranch": "Выберите филиал",
-    "selectTime": "Выберите время"
+    "selectTime": "Выберите время",
+    "email": "Электронная почта для уведомлений (необязательно)",
+    "emailPlaceholder": "you@example.com"
   },
   "branches": {
     "title": "Наши филиалы",

@@ -15,7 +15,7 @@ export const PROVIDER_CAPABILITIES: Record<PaymentProviderName, ProviderCapabili
 
 export function providerEnabled(p: PaymentProviderName): boolean {
   switch (p) {
-    case 'MOCK': return process.env.PAYMENT_MOCK_ENABLED === 'true';
+    case 'MOCK': return process.env.NODE_ENV !== 'production' && process.env.PAYMENT_MOCK_ENABLED === 'true';
     case 'STRIPE': return Boolean(process.env.STRIPE_SECRET_KEY);
     case 'PAYPAL': return Boolean(process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_CLIENT_SECRET);
     case 'ADYEN': return Boolean(process.env.ADYEN_API_KEY && process.env.ADYEN_MERCHANT_ACCOUNT);

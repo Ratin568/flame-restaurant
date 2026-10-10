@@ -1,0 +1,28 @@
+FLAME v14 HARDENING PATCH — TEST RESULTS (revision 2)
+
+PASS — `npm run qa:i18n`
+- 12 locale files audited: ar, de, en, es, fa, fr, it, ja, pt, ru, tr, zh.
+- 291 leaf keys in each dictionary; missing=0; extra=0.
+
+PASS — `npm run qa:static`
+- Required source files, schema, compose file, v14 migration and route boundaries exist.
+- Skip link, focus-visible/reduced-motion, safe JSON-LD, private-route noindex and CI integration-test wiring checks pass.
+- No `.env`, `.env.local` or `.env.production` is included in the patch working tree.
+
+PASS — `node --experimental-strip-types --test tests/unit/*.test.mjs`
+- 15 tests passed, 0 failed.
+- Covers financial math, quantity validation, reservation wall-clock/DST behavior, reservation capacity windows, explicit ADMIN role, locale URLs/hreflang, safe JSON-LD and ISO currency minor-unit conversion and production mock-payment disablement.
+
+PASS — TypeScript syntax transpilation
+- 249 TypeScript/TSX files scanned with global TypeScript transpileModule; 0 syntax diagnostics. This is a syntax check only, not a typecheck.
+
+PASS — JSON/YAML syntax
+- package.json, locale dictionaries, CI workflow and Docker Compose parse successfully.
+
+CI-GATED — `npm run test:integration`
+- Added PostgreSQL smoke/integration test for database connectivity, required migration columns and atomic coupon max-use under 12 concurrent updates.
+- Wired into GitHub Actions after `prisma migrate deploy`; not run in this local session.
+
+NOT RUN / NOT CONFIRMED — `npm run typecheck`, `npm run lint`, `npm run build`, database migration execution, CI run, browser/E2E, responsive viewport sweep, accessibility audit, live email delivery, payment-provider sandbox, penetration test, restore/rollback drill.
+
+Environment limitation: `npm ci --ignore-scripts --no-audit --no-fund --prefer-offline` timed out twice, leaving dependencies unavailable. Do not interpret syntax transpilation as a passing full TypeScript check or a green build. This patch is not production-certified until all gates above are run successfully.

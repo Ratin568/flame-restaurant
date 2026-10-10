@@ -6,6 +6,7 @@ import {db} from '@/lib/db';
 import {requireAdmin} from '@/lib/auth/admin';
 import {routing, type Locale} from '@/i18n/routing';
 import {z} from 'zod';
+import {auditLog} from '@/lib/audit';
 
 async function guard() {
   const admin = await requireAdmin();
@@ -71,6 +72,7 @@ export async function createPostAction(
     },
   });
 
+  await auditLog('blog.post.create', {slug: parsed.data.slug, isPublished: parsed.data.isPublished});
   revalidatePath('/admin/blog');
   revalidatePath('/', 'layout');
   redirect('/admin/blog');
@@ -125,6 +127,7 @@ export async function updatePostAction(
     });
   });
 
+  await auditLog('blog.post.update', {id, slug: parsed.data.slug, isPublished: parsed.data.isPublished});
   revalidatePath('/admin/blog');
   revalidatePath('/', 'layout');
   redirect('/admin/blog');
@@ -147,6 +150,7 @@ export async function togglePostPublishedAction(formData: FormData): Promise<voi
     },
   });
 
+  await auditLog('blog.post.publish.update', {id, isPublished: next});
   revalidatePath('/admin/blog');
   revalidatePath('/', 'layout');
   redirect('/admin/blog');
@@ -158,6 +162,7 @@ export async function deletePostAction(formData: FormData): Promise<void> {
   if (!id) return;
 
   await db.blogPost.delete({where: {id}});
+  await auditLog('blog.post.delete', {id});
 
   revalidatePath('/admin/blog');
   revalidatePath('/', 'layout');

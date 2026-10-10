@@ -150,3 +150,26 @@ export function SuspiciousLoginEmail({name, ip, userAgent}: {name: string; ip: s
 export async function sendSuspiciousLoginEmail(to: string, name: string, ip: string, userAgent: string, _locale: string): Promise<EmailResult> {
   return sendEmail({to, subject: 'New sign-in detected on Flame', content: <SuspiciousLoginEmail name={name} ip={ip} userAgent={userAgent} />, idempotencyKey: `suspicious-login:${hashId(`${to}:${ip}:${userAgent}`)}`});
 }
+
+
+export function BusinessEventEmail({title, message, reference}: {title: string; message: string; reference?: string}) {
+  return (
+    <Html><Head /><Preview>{title}</Preview><Body style={{backgroundColor: brand.bg, fontFamily: 'Arial, sans-serif'}}>
+      <Container style={{backgroundColor: brand.card, margin: '40px auto', borderRadius: 12, padding: 32}}>
+        <Text style={{color: brand.primary, fontSize: 28, fontWeight: 'bold'}}>Flame</Text>
+        <Text style={{color: brand.text, fontSize: 20, fontWeight: 'bold'}}>{title}</Text>
+        <Text style={{color: brand.muted, fontSize: 14, lineHeight: '22px'}}>{message}</Text>
+        {reference ? <Text style={{color: brand.text, fontSize: 14}}>Reference: {reference}</Text> : null}
+      </Container>
+    </Body></Html>
+  );
+}
+
+export async function sendBusinessEventEmail(to: string, input: {eventKey: string; title: string; message: string; reference?: string}): Promise<EmailResult> {
+  return sendEmail({
+    to,
+    subject: input.title,
+    content: <BusinessEventEmail title={input.title} message={input.message} reference={input.reference} />,
+    idempotencyKey: `${input.eventKey}:${input.reference ?? to}`,
+  });
+}

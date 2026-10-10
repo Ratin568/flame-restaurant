@@ -22,7 +22,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const product = await getProductBySlug(category, slug, locale);
   if (!product) return {};
 
-  return buildOgMetadata(product.name, product.description, `/${category}/${slug}`);
+  return buildOgMetadata(product.name, product.description, `/menu/${category}/${slug}`, locale as import('@/i18n/routing').Locale);
 }
 
 export default async function ProductPage({params}: Props) {

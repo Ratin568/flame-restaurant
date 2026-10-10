@@ -218,7 +218,9 @@
     "payment_invalid": "Invalid payment session.",
     "payment_unavailable": "This payment method is not configured.",
     "payment_mock": "Test Payment",
-    "payment_mock_desc": "Local development payment simulator"
+    "payment_mock_desc": "Local development payment simulator",
+    "email": "注文通知用メールアドレス（任意）",
+    "emailPlaceholder": "you@example.com"
   },
   "orderSuccess": {
     "title": "ご注文ありがとうございます!🎉",
@@ -270,7 +272,9 @@
     "success": "ご予約を受け付けました!まもなく確認のご連絡をいたします。",
     "error": "問題が発生しました — もう一度お試しください",
     "selectBranch": "店舗を選択",
-    "selectTime": "時間を選択"
+    "selectTime": "時間を選択",
+    "email": "通知用メールアドレス（任意）",
+    "emailPlaceholder": "you@example.com"
   },
   "branches": {
     "title": "店舗一覧",

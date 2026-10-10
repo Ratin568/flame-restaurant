@@ -1,38 +1,24 @@
 import type {Metadata} from 'next';
-import {routing} from '@/i18n/routing';
+import {routing, type Locale} from '@/i18n/routing';
 import {siteConfig} from '@/config/site';
+import {absoluteLocalizedUrl, buildLanguageUrls} from './url';
 
-/**
- * alternateLanguages: hreflang برای همه ۱۲ زبان + x-default
- * این همان چیزی است که گوگل را از ترجمه‌های درست هر زبان باخبر می‌کند
- */
-export function buildAlternates(path: string): Metadata['alternates'] {
-  const languages: Record<string, string> = {};
-  for (const locale of routing.locales) {
-    languages[locale] = locale === routing.defaultLocale ? path : `/${locale}${path}`;
-  }
-  languages['x-default'] = path; // برای زبان‌های ناشناخته
-
-  return {canonical: path, languages};
+export function buildAlternates(path: string, locale: Locale = routing.defaultLocale): Metadata['alternates'] {
+  const base = siteConfig.domain.replace(/\/$/, '');
+  return {
+    canonical: absoluteLocalizedUrl(base, path, locale, routing.defaultLocale),
+    languages: buildLanguageUrls(base, path, routing.locales, routing.defaultLocale),
+  };
 }
 
-/** Open Graph + Twitter — پیش‌نمایش زیبا در اشتراک‌گذاری */
-export function buildOgMetadata(title: string, description: string, path: string): Metadata {
+export function buildOgMetadata(title: string, description: string, path: string, locale: Locale = routing.defaultLocale): Metadata {
+  const base = siteConfig.domain.replace(/\/$/, '');
+  const canonical = absoluteLocalizedUrl(base, path, locale, routing.defaultLocale);
   return {
     title,
     description,
-    alternates: buildAlternates(path),
-    openGraph: {
-      title: `${title} | ${siteConfig.name}`,
-      description,
-      url: path,
-      siteName: siteConfig.name,
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${title} | ${siteConfig.name}`,
-      description,
-    },
+    alternates: buildAlternates(path, locale),
+    openGraph: {title: `${title} | ${siteConfig.name}`, description, url: canonical, siteName: siteConfig.name, type: 'website', images: [{url: `${base}/branding/icon-512.png`, width: 512, height: 512, alt: `${siteConfig.name} brand mark`}]},
+    twitter: {card: 'summary_large_image', title: `${title} | ${siteConfig.name}`, description, images: [`${base}/branding/icon-512.png`]},
   };
 }

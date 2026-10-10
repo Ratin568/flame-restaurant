@@ -1,22 +1,15 @@
-import 'server-only';
-
+﻿import 'server-only';
 import {Resend} from 'resend';
-import nodemailer, {type Transporter} from 'nodemailer';
+import nodemailer from 'nodemailer';
+import type {Transporter} from 'nodemailer';
 import type {ReactNode} from 'react';
 
 export type EmailProvider = 'resend' | 'gmail';
-
-export type EmailResult = {
-  ok: boolean;
-  id?: string;
-  error?: string;
-};
+export type EmailResult = {ok: boolean; error?: string; messageId?: string};
 
 const provider = (process.env.EMAIL_PROVIDER ?? 'gmail').toLowerCase() as EmailProvider;
-
 const resendApiKey = process.env.RESEND_API_KEY;
 const resendFrom = process.env.EMAIL_FROM ?? 'Flame <onboarding@resend.dev>';
-
 const gmailUser = process.env.GMAIL_SMTP_USER;
 const gmailAppPassword = process.env.GMAIL_SMTP_APP_PASSWORD;
 const gmailFrom = process.env.GMAIL_FROM ?? gmailUser;
@@ -25,28 +18,15 @@ if (provider !== 'resend' && provider !== 'gmail') {
   throw new Error(`Unsupported EMAIL_PROVIDER: ${provider}. Use 'resend' or 'gmail'.`);
 }
 
-/**
- * آیا سرویس ایمیل انتخاب‌شده تنظیم شده؟
- */
-export const emailEnabled =
-  provider === 'resend'
-    ? Boolean(resendApiKey)
-    : Boolean(gmailUser && gmailAppPassword);
+/** Ø¢ÛŒØ§ Ø³Ø±ÙˆÛŒØ³ Ø§ÛŒÙ…ÛŒÙ„ Ø§Ù†ØªØ®Ø§Ø¨â€ŒØ´Ø¯Ù‡ ØªÙ†Ø¸ÛŒÙ… Ø´Ø¯Ù‡ØŸ */
+export const emailEnabled = provider === 'resend' ? Boolean(resendApiKey) : Boolean(gmailUser && gmailAppPassword);
 
 let gmailTransporter: Transporter | null = null;
 
-/**
- * ساخت و نگهداری Transporter مربوط به Gmail.
- */
 function getGmailTransporter(): Transporter {
-  if (gmailTransporter) {
-    return gmailTransporter;
-  }
-
+  if (gmailTransporter) return gmailTransporter;
   if (!gmailUser || !gmailAppPassword) {
-    throw new Error(
-      'Gmail email provider is selected but GMAIL_SMTP_USER or GMAIL_SMTP_APP_PASSWORD is missing.',
-    );
+    throw new Error('Gmail email provider is selected but GMAIL_SMTP_USER or GMAIL_SMTP_APP_PASSWORD is missing.');
   }
 
   gmailTransporter = nodemailer.createTransport({
@@ -63,10 +43,9 @@ function getGmailTransporter(): Transporter {
 }
 
 /**
- * ارسال ایمیل از طریق Provider انتخاب‌شده.
- *
- * Providerها عمداً پشت یک API مشترک نگه داشته شده‌اند تا مشتری بتواند
- * فقط با تغییر ENV بین Resend و Gmail جابه‌جا شود.
+ * Ø§Ø±Ø³Ø§Ù„ Ø§ÛŒÙ…ÛŒÙ„ Ø§Ø² Ø·Ø±ÛŒÙ‚ Provider Ø§Ù†ØªØ®Ø§Ø¨â€ŒØ´Ø¯Ù‡.
+ * ProviderÙ‡Ø§ Ø¹Ù…Ø¯Ø§Ù‹ Ù¾Ø´Øª ÛŒÚ© API Ù…Ø´ØªØ±Ú© Ù†Ú¯Ù‡ Ø¯Ø§Ø´ØªÙ‡ Ø´Ø¯Ù‡â€ŒØ§Ù†Ø¯ ØªØ§ Ù…Ø´ØªØ±ÛŒ Ø¨ØªÙˆØ§Ù†Ø¯
+ * ÙÙ‚Ø· Ø¨Ø§ ØªØºÛŒÛŒØ± ENV Ø¨ÛŒÙ† Resend Ùˆ Gmail Ø¬Ø§Ø¨Ù‡â€ŒØ¬Ø§ Ø´ÙˆØ¯.
  */
 export async function sendEmail({
   to,
@@ -80,35 +59,18 @@ export async function sendEmail({
   idempotencyKey?: string;
 }): Promise<EmailResult> {
   if (!emailEnabled) {
-    console.log(
-      `📧 [email disabled] provider=${provider} to=${to} subject="${subject}"${
-        idempotencyKey ? ` idempotencyKey="${idempotencyKey}"` : ''
-      }`,
-    );
-
-    return {
-      ok: false,
-      error: 'Email provider is not configured.',
-    };
+    console.error(`[email] not sent: provider=${provider} is not configured`);
+    return {ok: false, error: `Email provider ${provider} is not configured`};
   }
+  // Gmail SMTP does not provide provider-side idempotency. Keep the key available
+  // for correlation; callers must not assume it deduplicates SMTP submissions.
+  void idempotencyKey;
 
   try {
-    /**
-     * ─────────────────────────────────────────────
-     * Resend
-     * ─────────────────────────────────────────────
-     */
     if (provider === 'resend') {
-      if (!resendApiKey) {
-        return {
-          ok: false,
-          error: 'RESEND_API_KEY is missing.',
-        };
-      }
-
+      if (!resendApiKey) return {ok: false, error: 'RESEND_API_KEY is missing'};
       const resend = new Resend(resendApiKey);
-
-      const {data, error} = await resend.emails.send({
+      const {error} = await resend.emails.send({
         from: resendFrom,
         to,
         subject,
@@ -116,33 +78,14 @@ export async function sendEmail({
       });
 
       if (error) {
-        console.error('📧 Resend email error:', error);
-
-        return {
-          ok: false,
-          error: error.message ?? 'Resend failed to send email.',
-        };
+        console.error('[email] Resend delivery failed:', error);
+        return {ok: false, error: String(error.message ?? 'Resend delivery failed')};
       }
 
-      console.log(
-        `📧 Resend email sent: ${data?.id ?? 'unknown-id'}${
-          idempotencyKey ? ` (${idempotencyKey})` : ''
-        }`,
-      );
-
-      return {
-        ok: true,
-        id: data?.id,
-      };
+      return {ok: true};
     }
 
-    /**
-     * ─────────────────────────────────────────────
-     * Gmail SMTP
-     * ─────────────────────────────────────────────
-     */
     const transporter = getGmailTransporter();
-
     const info = await transporter.sendMail({
       from: gmailFrom,
       to,
@@ -150,36 +93,20 @@ export async function sendEmail({
       html: await renderEmailHtml(content),
     });
 
-    console.log(
-      `📧 Gmail email sent: ${info.messageId}${
-        idempotencyKey ? ` (${idempotencyKey})` : ''
-      }`,
-    );
-
-    return {
-      ok: true,
-      id: info.messageId,
-    };
+    console.log(`[email] Gmail delivery accepted: ${info.messageId}`);
+    return {ok: true, messageId: info.messageId};
   } catch (error) {
-    console.error(`📧 ${provider} email failed:`, error);
-
-    return {
-      ok: false,
-      error:
-        error instanceof Error
-          ? error.message
-          : 'Unknown email provider error.',
-    };
+    const message = error instanceof Error ? error.message : 'Unknown email delivery error';
+    console.error(`[email] ${provider} delivery failed:`, message);
+    return {ok: false, error: message};
   }
 }
 
 /**
  * React Email components are rendered by @react-email/render at runtime.
- *
- * Dynamic import keeps the provider layer independent from the template layer.
+ * The dynamic import keeps the provider layer independent from the template layer.
  */
 async function renderEmailHtml(content: ReactNode): Promise<string> {
   const {render} = await import('@react-email/render');
-
   return render(content);
 }

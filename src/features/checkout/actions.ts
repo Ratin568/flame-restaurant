@@ -17,7 +17,8 @@ import {createTrackingCredentials} from '@/lib/order-tracking';
 const checkoutSchema = z.object({
   orderType: z.enum(['DELIVERY', 'PICKUP', 'DINE_IN']),
   name: z.string().min(2).max(80),
-  phone: z.string().min(7).max(20),
+  phone: z.string().trim().min(7).max(20),
+  email: z.union([z.string().trim().email().max(254), z.literal('')]).optional(),
   address: z.string().max(500).optional(),
   city: z.string().max(100).optional(),
   notes: z.string().max(1000).optional(),
@@ -29,7 +30,7 @@ const itemsSchema = z.array(z.object({
   productId: z.string().min(1),
   variant: z.object({id: z.string().min(1), name: z.string(), priceDelta: z.number()}).nullable(),
   modifiers: z.array(z.object({id: z.string().min(1), name: z.string(), price: z.number()})),
-  quantity: z.number().int().positive(),
+  quantity: z.number().int().min(1).max(99),
 }));
 
 function generateOrderNumber() {
@@ -63,7 +64,7 @@ export async function validateCouponAction(formData: FormData): Promise<{
         productId: z.string(),
         variant: z.object({id: z.string(), name: z.string(), priceDelta: z.number()}).nullable(),
         modifiers: z.array(z.object({id: z.string(), name: z.string(), price: z.number()})),
-        quantity: z.number(),
+        quantity: z.number().int().min(1).max(99),
       }),
     )
     .safeParse(items);
@@ -101,7 +102,7 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
   if (!rl.allowed) redirect('/cart', locale);
 
   const parsed = checkoutSchema.safeParse({
-    orderType: formData.get('orderType'), name: formData.get('name'), phone: formData.get('phone'),
+    orderType: formData.get('orderType'), name: formData.get('name'), phone: formData.get('phone'), email: formData.get('email') || undefined,
     address: formData.get('address') || undefined, city: formData.get('city') || undefined,
     notes: formData.get('notes') || undefined, coupon: formData.get('coupon') || undefined,
     paymentProvider: formData.get('paymentProvider'),
@@ -115,7 +116,7 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
   const itemsParsed = itemsSchema.safeParse(rawItems);
   if (!itemsParsed.success) redirect('/cart', locale);
 
-  const {orderType, name, phone, address, city, notes, coupon, paymentProvider} = parsed.data;
+  const {orderType, name, phone, email, address, city, notes, coupon, paymentProvider} = parsed.data;
   if (orderType === 'DELIVERY' && !address) redirect('/checkout?error=required', locale);
   if (!enabledProviders().includes(paymentProvider)) redirect('/checkout?payment=unavailable', locale);
 
@@ -137,7 +138,24 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
 
   const tracking = createTrackingCredentials();
 
-  const order = await db.$transaction(async tx => {
+  let order: {id: string; orderNumber: string};
+  try {
+    order = await db.$transaction(async tx => {
+    // Cash orders have no payment callback, so their coupon usage must be
+    // consumed atomically in the same transaction as the order creation.
+    if (paymentProvider === 'CASH' && pricing.couponCode) {
+      const consumed = await tx.$executeRaw`
+        UPDATE "coupons"
+        SET "usedCount" = "usedCount" + 1
+        WHERE "code" = ${pricing.couponCode}
+          AND "isActive" = true
+          AND ("expiresAt" IS NULL OR "expiresAt" > NOW())
+          AND ("maxUses" IS NULL OR "usedCount" < "maxUses")
+          AND ("minOrder" IS NULL OR "minOrder" <= ${pricing.subtotal})
+      `;
+      if (consumed !== 1) throw new Error('COUPON_UNAVAILABLE');
+    }
+
     let orderNumber = generateOrderNumber();
     for (let i = 0; i < 8; i++) {
       if (!(await tx.order.findUnique({where: {orderNumber}}))) break;
@@ -154,16 +172,22 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
           idempotencyKey: `${orderNumber}:${paymentProvider}`, metadata: {locale, pricingCurrency: DEFAULT_CURRENCY},
         }},
         addressSnapshot: orderType === 'DELIVERY' && address ? {name, phone, address, city: city ?? null} : undefined,
-        phone, notes,
+        phone, customerEmail: email || session?.email || null, notes,
         items: {create: pricing.lines.map(line => ({productId: line.productId, nameSnapshot: line.nameSnapshot, variant: line.variant, modifiers: line.modifiers, quantity: line.quantity, unitPrice: line.unitPrice}))},
       },
     });
     await tx.orderStatusLog.create({data: {orderId: created.id, status: 'PENDING'}});
     return created;
-  });
+    });
+  } catch (error) {
+    if (error instanceof Error && error.message === 'COUPON_UNAVAILABLE') {
+      redirect('/checkout?error=coupon', locale);
+    }
+    throw error;
+  }
 
   if (paymentProvider === 'CASH') {
-    await sendConfirmation(session, name, order, pricing.lines, Number(pricing.total), tracking.token);
+    await sendConfirmation(email || session?.email || null, name, order, pricing.lines, Number(pricing.total), tracking.token);
     redirect(`/order/success?token=${encodeURIComponent(tracking.token)}`, locale);
   }
 
@@ -174,13 +198,16 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
   try {
     paymentResult = await createProviderPayment(paymentProvider, {
       transactionId: payment.id, orderId: order.id, orderNumber: order.orderNumber, trackingToken: tracking.token,
-      amount, currency: payment.currency, locale, customerName: name, customerPhone: phone, customerEmail: session?.email,
+      amount, currency: payment.currency, locale, customerName: name, customerPhone: phone, customerEmail: email || session?.email,
     });
     if (paymentResult.kind === 'redirect') {
       await db.paymentTransaction.update({where: {id: payment.id}, data: {status: 'PROCESSING', providerSessionId: paymentResult.sessionId ?? null}});
     }
   } catch (error) {
-    await db.paymentTransaction.update({where: {id: payment.id}, data: {status: 'FAILED', failureReason: error instanceof Error ? error.message : 'Payment initialization failed'}});
+    await db.$transaction([
+      db.paymentTransaction.update({where: {id: payment.id}, data: {status: 'FAILED', failureReason: error instanceof Error ? error.message : 'Payment initialization failed'}}),
+      db.order.update({where: {id: order.id}, data: {paymentStatus: 'FAILED'}}),
+    ]);
     redirect('/checkout?payment=failed', locale);
   }
 
@@ -188,10 +215,10 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
 }
 
 async function sendConfirmation(
-  session: {email: string} | null, name: string, order: {orderNumber: string},
+  email: string | null, name: string, order: {orderNumber: string},
   lines: {nameSnapshot: string; quantity: number}[], total: number, trackingToken: string,
 ) {
-  if (session) void sendOrderConfirmationEmail(session.email, {
+  if (email) void sendOrderConfirmationEmail(email, {
     name, orderNumber: order.orderNumber, trackingToken,
     lines: lines.map(x => ({nameSnapshot: x.nameSnapshot, quantity: x.quantity})),
     total: formatPriceUsd(total),

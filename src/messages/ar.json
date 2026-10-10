@@ -218,7 +218,9 @@
     "payment_invalid": "Invalid payment session.",
     "payment_unavailable": "This payment method is not configured.",
     "payment_mock": "Test Payment",
-    "payment_mock_desc": "Local development payment simulator"
+    "payment_mock_desc": "Local development payment simulator",
+    "email": "البريد الإلكتروني لتحديثات الطلب (اختياري)",
+    "emailPlaceholder": "you@example.com"
   },
   "orderSuccess": {
     "title": "تم تأكيد طلبك! 🎉",
@@ -270,7 +272,9 @@
     "success": "تم استلام حجزك! سنؤكده قريبًا.",
     "error": "حدث خطأ ما — يرجى المحاولة مرة أخرى",
     "selectBranch": "اختر الفرع",
-    "selectTime": "اختر الوقت"
+    "selectTime": "اختر الوقت",
+    "email": "البريد الإلكتروني للتحديثات (اختياري)",
+    "emailPlaceholder": "you@example.com"
   },
   "branches": {
     "title": "فروعنا",

@@ -12,7 +12,7 @@ export const revalidate = 3600;
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {locale} = await resolveLocaleParams(params);
   const t = await getTranslations({locale, namespace: 'reserve'});
-  return buildOgMetadata(t('title'), t('subtitle'), '/reserve');
+  return buildOgMetadata(t('title'), t('subtitle'), '/reserve', locale as import('@/i18n/routing').Locale);
 }
 
 export default async function ReservePage({params}: Props) {

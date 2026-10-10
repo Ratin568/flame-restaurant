@@ -1,6 +1,7 @@
 import 'server-only';
 import {db} from '@/lib/db';
 import {getSession, type SessionPayload} from './session';
+import {hasRequiredRole} from './permissions';
 
 /**
  * سشن ادمین را برمی‌گرداند فقط اگر:
@@ -9,7 +10,7 @@ import {getSession, type SessionPayload} from './session';
  */
 export async function requireAdmin(): Promise<SessionPayload | null> {
   const session = await getSession();
-  if (!session || session.role !== 'ADMIN') return null;
+  if (!session || !hasRequiredRole(session.role, 'ADMIN')) return null;
 
   // ادمینی که 2FA فعال دارد ولی این سشن هنوز 2FA را رد نکرده → null
   // (layout ادمین او را به صفحه verify هدایت می‌کند)

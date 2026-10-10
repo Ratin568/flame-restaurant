@@ -1,0 +1,17 @@
+FLAME v14 EXECUTION LOG — 2026-10-09
+
+DONE: Listed Library versions; `flamev14.zip` was the newest numbered version found.
+DONE: Extracted the 739,338-byte source ZIP (316 entries) into an isolated working directory; the original ZIP was not modified.
+DONE: Read package scripts, schema, reservation actions, checkout/pricing code, payment completion, email provider, admin actions, health endpoint, locale dictionaries and deployment configuration.
+DONE: Implemented the files listed in CHANGELOG.txt.
+DONE: Ran `node scripts/audit-i18n.mjs`: 12 locale files; 291 leaf keys each; no missing/extra keys.
+DONE: Ran `node scripts/static-qa.mjs`: required files and migration present; no local secret-bearing .env files in working tree.
+PASS: `npm run test:unit` — 15 tests passed, 0 failed. This tests the extracted TypeScript pricing, reservation-validation and permission helpers using Node 22 type stripping.
+NOT RUN: Full TypeScript typecheck, ESLint, Next.js build, Prisma migration against a live database, Docker startup, browser accessibility/responsive tests, real SMTP/Resend send, payment sandbox or production endpoint checks. PostgreSQL integration and built-app HTTP smoke tests are wired into CI but have not run in this session.
+NOT RUN: Visual mobile checks at 375, 390, 414, 768, 1024 and 1440 px; CSS was code-reviewed only.
+
+No test was marked successful unless the command above actually ran and returned success. No production readiness or full security certification is claimed.
+
+BLOCKED: `npm ci --ignore-scripts --no-audit --no-fund --prefer-offline` timed out twice (120 seconds and 300 seconds); dependencies remained unavailable.
+
+BLOCKED: Full `tsc --noEmit` was attempted with the globally available compiler but the project dependencies/types were absent, producing unresolved-module and stale generated Prisma type errors. A separate syntax transpilation of 249 TS/TSX files passed with zero syntax diagnostics. This is not a passing full typecheck.

@@ -1,5 +1,6 @@
 import {siteConfig} from '@/config/site';
 import type {BranchView} from '@/features/branches/queries';
+import {serializeJsonLd} from './url';
 
 export type JsonLd = Record<string, unknown>;
 
@@ -20,22 +21,16 @@ export function restaurantSchema(rating?: {value: number; count: number}): JsonL
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
     name: siteConfig.name,
-    url: siteConfig.domain,
+    url: siteConfig.domain.replace(/\/$/, ''),
     telephone: siteConfig.phone,
     email: siteConfig.email,
     servesCuisine: [...siteConfig.cuisine],
     priceRange: siteConfig.priceRange,
-    acceptsReservations: 'True',
+    acceptsReservations: true,
     address: {
       '@type': 'PostalAddress',
       streetAddress: siteConfig.address.street,
       addressLocality: siteConfig.address.city,
-    },
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      opens: '11:00',
-      closes: '23:00',
     },
     ...(rating
       ? {
@@ -61,7 +56,7 @@ export function localBusinessSchema(branch: BranchView): JsonLd {
       streetAddress: branch.address ?? siteConfig.address.street,
       addressLocality: siteConfig.address.city,
     },
-    ...(branch.lat && branch.lng
+    ...(branch.lat != null && branch.lng != null
       ? {
           geo: {
             '@type': 'GeoCoordinates',
@@ -70,12 +65,6 @@ export function localBusinessSchema(branch: BranchView): JsonLd {
           },
         }
       : {}),
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      opens: '11:00',
-      closes: '23:00',
-    },
   };
 }
 
@@ -94,9 +83,9 @@ export function productSchema(
     offers: {
       '@type': 'Offer',
       price: product.price.toFixed(2),
-      priceCurrency: 'USD',
+      priceCurrency: (process.env.FLAME_DEFAULT_CURRENCY || 'EUR').toUpperCase(),
       availability: 'https://schema.org/InStock',
-      url: `${siteConfig.domain}/menu/${categorySlug}/${product.slug}`,
+      url: `${siteConfig.domain.replace(/\/$/, '')}/menu/${categorySlug}/${product.slug}`,
     },
     ...(rating
       ? {
@@ -119,7 +108,7 @@ export function breadcrumbSchema(items: {name: string; url: string}[]): JsonLd {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `${siteConfig.domain}${item.url}`,
+      item: `${siteConfig.domain.replace(/\/$/, '')}${item.url}`,
     })),
   };
 }
@@ -130,7 +119,7 @@ export function JsonLdScript({data}: {data: JsonLd}) {
     <script
       type="application/ld+json"
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{__html: JSON.stringify(data)}}
+      dangerouslySetInnerHTML={{__html: serializeJsonLd(data)}}
     />
   );
 }

@@ -4,6 +4,7 @@ import {revalidatePath} from 'next/cache';
 import {redirect} from 'next/navigation';
 import {db} from '@/lib/db';
 import {requireAdmin} from '@/lib/auth/admin';
+import {auditLog} from '@/lib/audit';
 
 async function guard() {
   const admin = await requireAdmin();
@@ -29,6 +30,7 @@ export async function setReviewApprovalAction(formData: FormData): Promise<void>
   if (!review) return;
 
   await db.review.update({where: {id}, data: {isApproved: next}});
+  await auditLog('review.approval.update', {id, isApproved: next});
 
   await revalidateProductOfReview(review.productId);
   revalidatePath('/admin/reviews');
@@ -43,6 +45,7 @@ export async function deleteReviewAction(formData: FormData): Promise<void> {
   if (!review) return;
 
   await db.review.delete({where: {id}});
+  await auditLog('review.delete', {id});
 
   await revalidateProductOfReview(review.productId);
   revalidatePath('/admin/reviews');

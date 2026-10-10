@@ -218,7 +218,9 @@
     "payment_invalid": "Invalid payment session.",
     "payment_unavailable": "This payment method is not configured.",
     "payment_mock": "Test Payment",
-    "payment_mock_desc": "Local development payment simulator"
+    "payment_mock_desc": "Local development payment simulator",
+    "email": "接收订单通知的邮箱（可选）",
+    "emailPlaceholder": "you@example.com"
   },
   "orderSuccess": {
     "title": "订单已确认！🎉",
@@ -270,7 +272,9 @@
     "success": "预订已收到！我们将尽快确认。",
     "error": "出现了一些问题——请重试",
     "selectBranch": "请选择门店",
-    "selectTime": "请选择时间"
+    "selectTime": "请选择时间",
+    "email": "接收通知的电子邮箱（可选）",
+    "emailPlaceholder": "you@example.com"
   },
   "branches": {
     "title": "我们的门店",

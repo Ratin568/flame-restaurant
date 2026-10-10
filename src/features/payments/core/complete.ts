@@ -1,5 +1,7 @@
 import {db} from '@/lib/db';
 import type {PaymentProvider} from '@/generated/prisma/client';
+import {sendBusinessEventEmail} from '@/lib/email-templates';
+import {toMinorUnits} from './currency';
 
 export async function completePaymentTransaction(input: {
   transactionId: string;
@@ -9,7 +11,8 @@ export async function completePaymentTransaction(input: {
   amountMinor?: number;
   currency?: string;
 }) {
-  return db.$transaction(async tx => {
+  let newlyCompleted = false;
+  const completedPayment = await db.$transaction(async tx => {
     const payment = await tx.paymentTransaction.findUnique({
       where: {id: input.transactionId},
       include: {order: true},
@@ -22,7 +25,7 @@ export async function completePaymentTransaction(input: {
       throw new Error(`Payment transaction is ${payment.status}`);
     }
 
-    if (input.amountMinor != null && Math.round(Number(payment.amount) * 100) !== input.amountMinor) {
+    if (input.amountMinor != null && toMinorUnits(Number(payment.amount), input.currency ?? payment.currency) !== input.amountMinor) {
       throw new Error('Payment amount mismatch');
     }
     if (input.currency && payment.currency !== input.currency.toUpperCase()) {
@@ -45,6 +48,7 @@ export async function completePaymentTransaction(input: {
     if (claimed.count === 0) {
       return tx.paymentTransaction.findUniqueOrThrow({where: {id: payment.id}});
     }
+    newlyCompleted = true;
 
     await tx.order.update({where: {id: payment.orderId}, data: {paymentStatus: 'PAID'}});
 
@@ -75,14 +79,50 @@ export async function completePaymentTransaction(input: {
 
     return tx.paymentTransaction.findUniqueOrThrow({where: {id: payment.id}});
   });
+
+  if (newlyCompleted) {
+    try {
+      const order = await db.order.findUnique({where: {id: completedPayment.orderId}, select: {orderNumber: true, customerEmail: true, user: {select: {email: true}}}});
+      const email = order?.customerEmail || order?.user?.email;
+      if (order && email) {
+        const result = await sendBusinessEventEmail(email, {eventKey: 'payment-success', title: 'Payment received', message: 'Your payment was confirmed successfully.', reference: order.orderNumber});
+        if (!result.ok) console.error('[notification] payment success email failed', result.error);
+      }
+    } catch (error) {
+      console.error('[notification] payment success notification lookup failed', error instanceof Error ? error.message : 'unknown error');
+    }
+  }
+  return completedPayment;
 }
 
 export async function markPaymentFailed(transactionId: string, reason: string, canceled = false) {
-  return db.paymentTransaction.updateMany({
-    where: {id: transactionId, status: {in: ['PENDING', 'PROCESSING']}},
-    data: {
-      status: canceled ? 'CANCELED' : 'FAILED',
-      failureReason: reason.slice(0, 500),
-    },
+  const result = await db.$transaction(async (tx) => {
+    const payment = await tx.paymentTransaction.findUnique({where: {id: transactionId}, select: {id: true, orderId: true}});
+    if (!payment) return {count: 0, orderId: null as string | null};
+    const changed = await tx.paymentTransaction.updateMany({
+      where: {id: transactionId, status: {in: ['PENDING', 'PROCESSING']}},
+      data: {
+        status: canceled ? 'CANCELED' : 'FAILED',
+        failureReason: reason.slice(0, 500),
+      },
+    });
+    if (changed.count > 0 && !canceled) {
+      await tx.order.update({where: {id: payment.orderId}, data: {paymentStatus: 'FAILED'}});
+    }
+    return {count: changed.count, orderId: payment.orderId};
   });
+  if (result.count > 0 && !canceled) {
+    try {
+      const payment = await db.paymentTransaction.findUnique({where: {id: transactionId}, select: {order: {select: {orderNumber: true, customerEmail: true, user: {select: {email: true}}}}}});
+      const order = payment?.order;
+      const email = order?.customerEmail || order?.user?.email;
+      if (order && email) {
+        const delivery = await sendBusinessEventEmail(email, {eventKey: 'payment-failed', title: 'Payment could not be confirmed', message: 'We could not confirm your payment. Please review your order before trying again.', reference: order.orderNumber});
+        if (!delivery.ok) console.error('[notification] payment failure email failed', delivery.error);
+      }
+    } catch (error) {
+      console.error('[notification] payment failure notification lookup failed', error instanceof Error ? error.message : 'unknown error');
+    }
+  }
+  return {count: result.count};
 }

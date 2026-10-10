@@ -1,3 +1,4 @@
+import {toMinorUnits} from '@/features/payments/core/currency';
 import {getMolliePayment} from '@/features/payments/providers/mollie';
 import {
   completePaymentTransaction,
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
         provider: 'MOLLIE',
         providerPaymentId: payment.id,
         providerTransactionId: payment.id,
-        amountMinor: Math.round(Number(payment.amount.value) * 100),
+        amountMinor: toMinorUnits(Number(payment.amount.value), payment.amount.currency),
         currency: payment.amount.currency,
       });
     } else if (

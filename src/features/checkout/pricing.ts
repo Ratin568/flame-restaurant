@@ -1,5 +1,6 @@
 import {db} from '@/lib/db';
 import type {CartModifier, CartVariant} from '@/stores/cart';
+import {calculateDiscount, calculateOrderTotal, normalizeQuantity, roundMoney} from './pricing-math';
 
 export type PricingLine = {
   productId: string;
@@ -56,22 +57,25 @@ export async function priceCart(
     if (item.variant && !variant) return null;
 
     // فقط افزودنی‌هایی قبول می‌شوند که واقعاً برای این محصول ثبت شده‌اند
-    const dbModifiers = item.modifiers
-      .map((m) => product.modifiers.find((db) => db.id === m.id))
-      .filter((m): m is NonNullable<typeof m> => Boolean(m));
+    const modifierIds = item.modifiers.map((modifier) => modifier.id);
+    if (new Set(modifierIds).size !== modifierIds.length) return null;
+    const dbModifiers = item.modifiers.map((modifier) => product.modifiers.find((db) => db.id === modifier.id));
+    // Reject tampered cart data rather than silently dropping unknown modifiers.
+    if (dbModifiers.some((modifier) => !modifier)) return null;
+    const validModifiers = dbModifiers as NonNullable<(typeof dbModifiers)[number]>[];
 
     const base = Number(product.basePrice);
     const variantDelta = variant ? Number(variant.priceDelta) : 0;
-    const modifierSum = dbModifiers.reduce((sum, m) => sum + Number(m.price), 0);
+    const modifierSum = validModifiers.reduce((sum, m) => sum + Number(m.price), 0);
     const unitPrice = base + variantDelta + modifierSum;
 
     lines.push({
       productId: product.id,
       nameSnapshot: pick(product.translations)?.name ?? product.slug,
       variant: variant?.name ?? null,
-      modifiers: dbModifiers.map((m) => ({name: m.name, price: Number(m.price)})),
-      quantity: Math.min(Math.max(1, Math.floor(item.quantity)), 99),
-      unitPrice,
+      modifiers: validModifiers.map((m) => ({name: m.name, price: roundMoney(Number(m.price))})),
+      quantity: normalizeQuantity(item.quantity),
+      unitPrice: roundMoney(unitPrice),
     });
   }
 
@@ -94,11 +98,7 @@ export async function priceCart(
       (!coupon.minOrder || subtotal >= Number(coupon.minOrder));
 
     if (valid && coupon) {
-      discount =
-        coupon.type === 'PERCENT'
-          ? (subtotal * Number(coupon.value)) / 100
-          : Number(coupon.value);
-      discount = Math.min(discount, subtotal);
+      discount = calculateDiscount(subtotal, coupon.type, Number(coupon.value));
       appliedCoupon = coupon.code;
     }
   }
@@ -109,14 +109,10 @@ export async function priceCart(
 
   return {
     lines,
-    subtotal: round2(subtotal),
-    discount: round2(discount),
-    deliveryFee,
-    total: round2(subtotal - discount + deliveryFee),
+    subtotal: roundMoney(subtotal),
+    discount: roundMoney(discount),
+    deliveryFee: roundMoney(deliveryFee),
+    total: calculateOrderTotal(subtotal, discount, deliveryFee),
     couponCode: appliedCoupon,
   };
-}
-
-function round2(n: number): number {
-  return Math.round(n * 100) / 100;
 }

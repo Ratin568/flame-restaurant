@@ -19,7 +19,11 @@ export async function auditLog(
         detail: detail ?? undefined,
       },
     });
-  } catch {
-    // audit مهم است ولی نباید عملیات اصلی را بشکند
+  } catch (error) {
+    // Keep the main operation available, but make audit persistence failures observable.
+    console.error('[audit] event persistence failed', {
+      action,
+      error: error instanceof Error ? error.message : 'unknown error',
+    });
   }
 }

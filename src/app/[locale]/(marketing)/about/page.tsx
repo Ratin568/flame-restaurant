@@ -10,7 +10,7 @@ export const revalidate = 86400;
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {locale} = await resolveLocaleParams(params);
   const t = await getTranslations({locale, namespace: 'about'});
-  return buildOgMetadata(t('title'), t('story1'), '/about');
+  return buildOgMetadata(t('title'), t('story1'), '/about', locale as import('@/i18n/routing').Locale);
 }
 
 export default async function AboutPage({params}: Props) {

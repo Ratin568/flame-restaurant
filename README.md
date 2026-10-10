@@ -1,6 +1,6 @@
 # 🔥 Flame — Restaurant Ordering Platform
 
-**Flame** is a production-grade, full-stack restaurant ordering platform designed and built from scratch.
+**Flame** is a full-stack restaurant ordering platform built with Next.js, TypeScript and PostgreSQL. Deployment readiness depends on environment configuration and passing the release checks below.
 
 It simulates the complete workflow of a modern online restaurant — from browsing and customizing menu items to placing orders and tracking them — together with a comprehensive administration platform for managing the restaurant.
 
@@ -76,7 +76,6 @@ Flame includes:
 - **TOTP** two-factor authentication for administrators
 - Redis-based rate limiting
 - Honeypot protection against automated submissions
-- Strict Content Security Policy
 - Security headers
 - Zod-based input validation
 - Administrative audit logging
@@ -123,7 +122,7 @@ It includes:
 | Zustand | Cart state management |
 | Zod | Validation |
 | jose | JWT handling |
-| Resend | Transactional email |
+| Gmail SMTP / Resend | Transactional email |
 | React Email | Email templates |
 | Docker | Containerized deployment |
 
@@ -156,32 +155,28 @@ Make sure the following are available:
 - PostgreSQL
 - Redis
 
-### 1. Install dependencies
+### 1. Start PostgreSQL and Redis
 
 ```bash
-npm install
+docker compose up -d postgres redis
 ```
 
-### 2. Start PostgreSQL and Redis
+### 2. Configure environment variables
+
+Create `.env` from `.env.example` and set a valid `DATABASE_URL` before installing dependencies (Prisma generation reads it). Configure Redis, authentication, email and payment variables as needed. Do not use placeholder credentials in a deployed environment.
+
+### 3. Install dependencies
 
 ```bash
-docker compose up -d
+npm ci
 ```
 
-### 3. Configure environment variables
+### 4. Apply database migrations
 
-Create a `.env` file containing the required environment variables for:
-
-- PostgreSQL
-- Redis
-- Authentication
-- Email delivery
-- Application configuration
-
-### 4. Push the database schema
+For local development, use `npm run db:migrate` when creating/applying development migrations. For an existing environment with committed migrations, use:
 
 ```bash
-npm run db:push
+npx prisma migrate deploy
 ```
 
 ### 5. Seed the database
@@ -201,6 +196,38 @@ The application will be available on:
 ```text
 http://localhost:3000
 ```
+
+---
+
+
+## 🧪 Quality Checks and Technical Docs
+
+Use Node.js 22 for the built-in TypeScript test runner used by the unit test script. After installing dependencies, run:
+
+```bash
+npm run qa:i18n
+npm run qa:static
+npm run test:unit
+npm run test:integration
+npm run typecheck
+npm run lint
+npm run build
+npm run test:smoke
+```
+
+The technical guides are in `docs/`:
+
+- `ARCHITECTURE.md` — request and service boundaries
+- `DATABASE.md` — schema, transactions and migrations
+- `SECURITY.md` — current controls and review limitations
+- `DEPLOYMENT.md` — environment variables, migration and rollback sequence
+- `API.md` — route and Server Action inventory
+- `CONTRIBUTING.md` — code and testing conventions
+- `updates/v14/QA_MATRIX.md` — status of the integrated update tracks
+
+`EMAIL_PROVIDER` selects `gmail` or `resend`. Email delivery is reported as failed when the selected provider is not configured. Set `REDIS_URL` for shared rate limiting in multi-instance deployments; the in-process fallback is not distributed.
+
+A successful unit-test or locale audit does not certify the whole application as production-ready. Run the complete typecheck, lint, build, migration, browser, email and payment-sandbox checks in the target environment before release.
 
 ---
 
@@ -274,6 +301,19 @@ The mock flow simulates provider-hosted checkout and webhook outcomes: successfu
 
 For real deployments, customers connect their own supported PSP credentials (for example Stripe, PayPal, Adyen, Mollie, or ZarinPal where applicable).
 
+## ✉️ Email Delivery
+
+Flame supports two interchangeable transactional-email providers behind the same `sendEmail()` interface:
+
+- `gmail` — Gmail SMTP using a Google App Password.
+- `resend` — Resend Email API.
+
+Set `EMAIL_PROVIDER` to select the active provider. The inactive provider is not removed from the project, so a buyer can switch providers through environment variables without changing application code.
+
+For Gmail SMTP, enable 2-Step Verification on the Gmail account and create an App Password. Google documents App Passwords as 16-digit credentials available when 2-Step Verification is enabled.
+
+For Resend, keep the existing `RESEND_API_KEY` and `EMAIL_FROM` variables.
+
 ## 📜 License
 
 This project is released under the **MIT License**.
@@ -310,48 +350,4 @@ Configure credentials in `.env` / deployment secrets. Secrets stay server-side a
 
 The merchant remains responsible for having an eligible account with the selected payment provider and for configuring the provider-side webhook URL. Flame supplies the integration code; it does not turn Flame itself into a regulated payment institution.
 
-## 🔐 Authentication hardening (v14)
-
-The authentication layer now supports:
-
-- Email verification with single-use, 24-hour hashed tokens
-- Password reset with single-use, 1-hour hashed tokens
-- Database-backed sessions with JWT session IDs
-- Current-session and all-device revocation
-- Active session management from the account page
-- Login history for successful and failed attempts
-- New-device/location detection with security email alerts
-- Password changes revoke every existing session
-
-After updating an existing database, run:
-
-```bash
-npm install
-npx prisma generate
-npx prisma migrate deploy
-npm run typecheck
-npm run build
-```
-
-### Transactional email setup
-
-Authentication emails are real backend emails; they are not simulated by the UI. Flame uses Resend on the server. Add these variables to your local `.env` (never expose the API key with `NEXT_PUBLIC_`):
-
-```env
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-RESEND_API_KEY="re_xxxxxxxxxxxxxxxxxxxxxxxxx"
-EMAIL_FROM="Flame <onboarding@resend.dev>"
-EMAIL_REPLY_TO=""
-```
-
-Then verify the provider independently before testing registration:
-
-```bash
-npm run email:test -- your-email@example.com
-```
-
-The command must report an email ID from Resend. If it fails, fix the Resend API key/sender configuration first. For production, configure `EMAIL_FROM` with an address on a domain verified in Resend.
-
-When a user registers, Flame creates a hashed, single-use verification token and sends the actual verification link through this provider. If delivery fails, registration no longer pretends that the message was sent; the server logs the provider error and the user can use the resend-verification flow after the mail service is fixed. Password-reset requests remain enumeration-safe: the UI returns the same generic response whether or not the address exists.
-
-For a fresh development database, `npm run db:push` also applies the updated schema.
+Reservation dates use `RESTAURANT_TIME_ZONE` (IANA identifier, e.g. `Europe/Rome`); the code default is UTC, so set it to the restaurant location before accepting reservations.

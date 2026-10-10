@@ -27,6 +27,7 @@ export async function generateMetadata({
     t('title'),
     t('subtitle'),
     '/menu',
+    locale as import('@/i18n/routing').Locale,
   );
 }
 

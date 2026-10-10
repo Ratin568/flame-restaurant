@@ -1,0 +1,7 @@
+Package changes for Flame v14 integrated patch
+
+Added dependencies: none.
+Removed dependencies: none.
+Version changes: none.
+
+No new test framework or runtime dependency was added. Unit tests use Node 22 built-in TypeScript stripping; PostgreSQL integration uses the existing `tsx` dependency; HTTP smoke uses Node built-ins. `package-lock.json` therefore did not need dependency resolution changes. `package.json` scripts changed only.

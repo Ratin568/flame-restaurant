@@ -34,7 +34,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(siteConfig.domain),
-    ...buildOgMetadata(t('title'), t('description'), '/'),
+    ...buildOgMetadata(t('title'), t('description'), '/', locale as import('@/i18n/routing').Locale),
   };
 }
 
@@ -56,6 +56,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-svh flex-col bg-background text-foreground antialiased">
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"
@@ -64,7 +65,9 @@ export default async function LocaleLayout({
             disableTransitionOnChange
           >
             <Header />
-            <main className="flex-1">{children}</main>
+            <div id="main-content" tabIndex={-1} className="flex-1 outline-none">
+              {children}
+            </div>
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>

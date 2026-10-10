@@ -218,7 +218,9 @@
     "payment_invalid": "Invalid payment session.",
     "payment_unavailable": "This payment method is not configured.",
     "payment_mock": "Test Payment",
-    "payment_mock_desc": "Local development payment simulator"
+    "payment_mock_desc": "Local development payment simulator",
+    "email": "Sipariş bildirimleri için e-posta (isteğe bağlı)",
+    "emailPlaceholder": "you@example.com"
   },
   "orderSuccess": {
     "title": "Siparişiniz onaylandı! 🎉",
@@ -270,7 +272,9 @@
     "success": "Rezervasyonunuz alındı! Kısa süre içinde onaylayacağız.",
     "error": "Bir sorun oluştu — lütfen tekrar deneyin",
     "selectBranch": "Şube seçin",
-    "selectTime": "Saat seçin"
+    "selectTime": "Saat seçin",
+    "email": "Bildirim e-postası (isteğe bağlı)",
+    "emailPlaceholder": "you@example.com"
   },
   "branches": {
     "title": "Şubelerimiz",

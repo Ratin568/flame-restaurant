@@ -148,7 +148,7 @@ export async function createProductAction(
     },
   });
 
-  void auditLog('product.create', {slug: data.slug, categoryId: data.categoryId});
+  await auditLog('product.create', {slug: data.slug, categoryId: data.categoryId});
 
   revalidatePath('/admin/products');
   revalidatePath('/', 'layout');
@@ -208,7 +208,7 @@ export async function updateProductAction(
     }
   });
 
-  void auditLog('product.update', {id, slug: data.slug});
+  await auditLog('product.update', {id, slug: data.slug});
 
   revalidatePath('/admin/products');
   revalidatePath('/', 'layout');
@@ -224,13 +224,13 @@ export async function deleteProductAction(formData: FormData): Promise<void> {
   const orderCount = await db.orderItem.count({where: {productId: id}});
   if (orderCount > 0) {
     await db.product.update({where: {id}, data: {isAvailable: false}});
-    void auditLog('product.hide-instead-of-delete', {id, reason: 'has-orders'});
+    await auditLog('product.hide-instead-of-delete', {id, reason: 'has-orders'});
     redirect('/admin/products?error=has-orders');
   }
 
   await db.product.delete({where: {id}});
 
-  void auditLog('product.delete', {id});
+  await auditLog('product.delete', {id});
 
   revalidatePath('/admin/products');
   revalidatePath('/', 'layout');
@@ -245,7 +245,7 @@ export async function toggleProductAvailabilityAction(formData: FormData): Promi
 
   await db.product.update({where: {id}, data: {isAvailable: next}});
 
-  void auditLog('product.toggle.availability', {id, next});
+  await auditLog('product.toggle.availability', {id, next});
 
   revalidatePath('/admin/products');
   revalidatePath('/', 'layout');
@@ -260,7 +260,7 @@ export async function toggleProductFeaturedAction(formData: FormData): Promise<v
 
   await db.product.update({where: {id}, data: {isFeatured: next}});
 
-  void auditLog('product.toggle.featured', {id, next});
+  await auditLog('product.toggle.featured', {id, next});
 
   revalidatePath('/admin/products');
   revalidatePath('/', 'layout');

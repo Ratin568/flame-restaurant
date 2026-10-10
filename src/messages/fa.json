@@ -218,7 +218,9 @@
     "payment_invalid": "Invalid payment session.",
     "payment_unavailable": "This payment method is not configured.",
     "payment_mock": "Test Payment",
-    "payment_mock_desc": "Local development payment simulator"
+    "payment_mock_desc": "Local development payment simulator",
+    "email": "ایمیل برای اطلاع‌رسانی سفارش (اختیاری)",
+    "emailPlaceholder": "you@example.com"
   },
   "orderSuccess": {
     "title": "سفارش تأیید شد! 🎉",
@@ -270,7 +272,9 @@
     "success": "رزرو ثبت شد! به‌زودی تأییدش می‌کنیم.",
     "error": "مشکلی پیش آمد — دوباره تلاش کن",
     "selectBranch": "شعبه را انتخاب کن",
-    "selectTime": "ساعت را انتخاب کن"
+    "selectTime": "ساعت را انتخاب کن",
+    "email": "ایمیل برای دریافت اطلاع‌رسانی (اختیاری)",
+    "emailPlaceholder": "you@example.com"
   },
   "branches": {
     "title": "شعبه‌های ما",

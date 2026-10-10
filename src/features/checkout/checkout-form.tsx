@@ -231,6 +231,11 @@ export function CheckoutForm({
             </div>
           </div>
 
+          <div>
+            <label htmlFor="customerEmail" className="text-sm font-medium">{t('email')}</label>
+            <Input id="customerEmail" name="email" type="email" autoComplete="email" maxLength={254} placeholder={t('emailPlaceholder')} className="mt-1.5" />
+          </div>
+
           {orderType === 'DELIVERY' && (
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2">

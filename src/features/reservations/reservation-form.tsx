@@ -70,6 +70,11 @@ export function ReservationForm({branches}: {branches: {id: string; slug: string
       </div>
 
       <div>
+        <label htmlFor="reservation-email" className="text-sm font-medium">{t('email')}</label>
+        <Input id="reservation-email" name="email" type="email" autoComplete="email" maxLength={254} placeholder={t('emailPlaceholder')} className="mt-1.5" />
+      </div>
+
+      <div>
         <label className="text-sm font-medium">{t('notes')}</label>
         <Input name="notes" placeholder={t('notesPlaceholder')} className="mt-1.5" />
       </div>

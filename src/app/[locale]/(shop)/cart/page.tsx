@@ -8,7 +8,7 @@ type Props = {params: Promise<{locale: string}>};
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {locale} = await resolveLocaleParams(params);
   const t = await getTranslations({locale, namespace: 'cart'});
-  return {title: t('title')};
+  return {title: t('title'), robots: {index: false, follow: false, noarchive: true}};
 }
 
 export default async function CartPage({params}: Props) {

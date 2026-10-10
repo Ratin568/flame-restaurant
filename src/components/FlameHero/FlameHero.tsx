@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Button3D from '@/components/ui/button-3d';
 import styles from './FlameHero.module.css';
 
@@ -41,10 +42,13 @@ export default function FlameHero({
               media="(prefers-color-scheme: dark)"
             />
 
-            <img
+            <Image
               src="/mouse/mouse-black.png"
               alt=""
               aria-hidden="true"
+              width={70}
+              height={70}
+              sizes="70px"
             />
           </picture>
 

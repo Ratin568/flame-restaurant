@@ -218,7 +218,9 @@
     "payment_invalid": "Invalid payment session.",
     "payment_unavailable": "This payment method is not configured.",
     "payment_mock": "Test Payment",
-    "payment_mock_desc": "Local development payment simulator"
+    "payment_mock_desc": "Local development payment simulator",
+    "email": "E-Mail für Bestellupdates (optional)",
+    "emailPlaceholder": "you@example.com"
   },
   "orderSuccess": {
     "title": "Bestellung bestÃ¤tigt! ðŸŽ‰",
@@ -270,7 +272,9 @@
     "success": "Reservierung erhalten! Wir bestÃ¤tigen in KÃ¼rze.",
     "error": "Es ist ein Problem aufgetreten â€” bitte versuchen Sie es erneut",
     "selectBranch": "Standort auswÃ¤hlen",
-    "selectTime": "Uhrzeit auswÃ¤hlen"
+    "selectTime": "Uhrzeit auswÃ¤hlen",
+    "email": "E-Mail für Updates (optional)",
+    "emailPlaceholder": "you@example.com"
   },
   "branches": {
     "title": "Unsere Standorte",

@@ -1,6 +1,9 @@
+import type {Metadata} from 'next';
 import {redirect} from '@/i18n/navigation';
 import {getSession} from '@/lib/auth/session';
 import {resolveLocaleParams} from '@/i18n/params';
+
+export const metadata: Metadata = {robots: {index: false, follow: false, noarchive: true}};
 
 export default async function AccountLayout({
   children,

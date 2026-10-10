@@ -5,10 +5,10 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_USER: flame
-      POSTGRES_PASSWORD: flame_dev_password
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-flame_dev_password}
       POSTGRES_DB: flame
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - flame_pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -22,7 +22,12 @@ services:
     container_name: flame-redis
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
 volumes:
   flame_pgdata:

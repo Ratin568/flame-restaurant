@@ -5,6 +5,7 @@ import {redirect} from 'next/navigation';
 import {db} from '@/lib/db';
 import {requireAdmin} from '@/lib/auth/admin';
 import {z} from 'zod';
+import {auditLog} from '@/lib/audit';
 
 async function guard() {
   const admin = await requireAdmin();
@@ -54,6 +55,7 @@ export async function createCouponAction(formData: FormData): Promise<void> {
     },
   });
 
+  await auditLog('coupon.create', {code, type, value, maxUses});
   revalidatePath('/admin/coupons');
   redirect('/admin/coupons');
 }
@@ -65,6 +67,7 @@ export async function toggleCouponActiveAction(formData: FormData): Promise<void
   if (!code) return;
 
   await db.coupon.update({where: {code}, data: {isActive: next}});
+  await auditLog('coupon.active.update', {code, isActive: next});
 
   revalidatePath('/admin/coupons');
   redirect('/admin/coupons');
@@ -76,6 +79,7 @@ export async function deleteCouponAction(formData: FormData): Promise<void> {
   if (!code) return;
 
   await db.coupon.delete({where: {code}});
+  await auditLog('coupon.delete', {code});
 
   revalidatePath('/admin/coupons');
   redirect('/admin/coupons');

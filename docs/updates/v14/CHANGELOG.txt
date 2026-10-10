@@ -1,0 +1,60 @@
+FLAME v14 INTEGRATED PATCH — CHANGELOG
+
+Added:
+- src/features/checkout/pricing-math.ts
+- src/lib/validation/reservation-date-time.ts
+- src/lib/validation/reservation-capacity.ts
+- src/features/payments/core/currency.ts
+- src/lib/seo/url.ts
+- src/app/[locale]/loading.tsx and error.tsx
+- src/app/admin/loading.tsx and error.tsx
+- tests/integration/database-smoke.ts
+- scripts/http-smoke.mjs
+- src/lib/auth/permissions.ts
+- tests/unit/core-logic.test.mjs
+- scripts/audit-i18n.mjs
+- scripts/static-qa.mjs
+- .github/workflows/ci.yml
+- docs/ARCHITECTURE.md
+- docs/DATABASE.md
+- docs/SECURITY.md
+- docs/DEPLOYMENT.md
+- docs/API.md
+- docs/CONTRIBUTING.md
+- docs/updates/v14/PLAN.md
+- docs/updates/v14/CHANGELOG.txt
+- docs/updates/v14/PACKAGES.txt
+- docs/updates/v14/EXECUTION_LOG.txt
+- docs/updates/v14/TEST_RESULTS.txt
+- docs/updates/v14/INSTALLATION.md
+- docs/updates/v14/FINAL_REPORT.md
+- prisma/migrations/20261009000000_v14_hardening/migration.sql
+
+Changed:
+- src/features/checkout/checkout-form.tsx: optional customer email field; translated email labels added to all 12 locales
+- package.json: added unit, database integration, HTTP smoke, i18n and static QA scripts
+- src/features/checkout/pricing.ts: uses pure validated money functions; rejects invalid modifier selections
+- src/features/checkout/actions.ts: quantity bounds enforced on server; optional guest email saved for order notifications; cash-order coupon usage increment is atomic
+- src/features/reservations/actions.ts: IANA time-zone/DST-aware validation, exact-slot collision check, overlap capacity enforcement under Serializable transaction, contact email, notifications and audit event
+- src/lib/auth/admin.ts: uses explicit role allow-list helper
+- src/lib/email.ts: typed delivery result; missing provider credentials no longer report success
+- src/lib/email-templates.tsx: generic event email for order, payment and reservation updates
+- src/lib/audit.ts: audit persistence failures are logged without breaking the main operation
+- src/lib/rate-limit.ts: process-local fallback if Redis is unavailable, with deployment limitation logged
+- src/app/admin/orders/actions.ts: audit and best-effort order status email notification
+- src/app/admin/reservations/actions.ts: audit reservation status updates
+- src/app/admin/categories/actions.ts, src/app/admin/blog/actions.ts, src/app/admin/messages/actions.ts, src/app/admin/reviews/actions.ts: audit sensitive admin mutations
+- src/app/admin/coupons/actions.ts: audit coupon create/activate/delete actions
+- src/app/api/health/route.ts: no-store readiness response with no error detail leakage
+- src/app/globals.css: skip-link styling, focus-visible, reduced motion, touch targets and narrow-table overflow safeguards
+- SEO: locale-correct absolute canonical/hreflang URLs, sitemap alternates and blog entries, safe JSON-LD serialization, noindex on private/token pages, factual llms.txt
+- Payments: ISO-4217 minor-unit validation for providers and MOCK disabled in production; payment failure now updates order payment status
+- prisma/schema.prisma: reservation composite index, branch capacity/duration controls, product/blog query indexes, optional reservation contact email and order customer email
+- docker-compose.yml: configurable local Postgres password and Redis health check / loopback port binding
+- .env.example: Redis URL documented and duplicate app URL removed
+
+Removed: none.
+
+Not changed intentionally:
+- Existing payment adapters and auth/session model were preserved; no live payment/email credentials were available.
+- FlameBasic merge and portfolio/marketing work remain excluded.

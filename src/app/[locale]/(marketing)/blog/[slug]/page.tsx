@@ -16,7 +16,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {locale, slug} = await resolveLocaleParams(params);
   const post = await getPostBySlug(slug, locale);
   if (!post) return {};
-  return buildOgMetadata(post.title, post.excerpt, `/blog/${slug}`);
+  return buildOgMetadata(post.title, post.excerpt, `/blog/${slug}`, locale as import('@/i18n/routing').Locale);
 }
 
 export default async function BlogPostPage({params}: Props) {

@@ -1,5 +1,8 @@
 import type {ReactNode} from "react";
+import type {Metadata} from "next";
 import {BackgroundPaths} from "@/components/ui/background-paths";
+
+export const metadata: Metadata = {robots: {index: false, follow: false, noarchive: true}};
 
 export default function AuthLayout({children}: {children: ReactNode}) {
   return (

@@ -6,6 +6,7 @@ import {db} from '@/lib/db';
 import {requireAdmin} from '@/lib/auth/admin';
 import {routing, type Locale} from '@/i18n/routing';
 import {z} from 'zod';
+import {auditLog} from '@/lib/audit';
 
 async function guard() {
   const admin = await requireAdmin();
@@ -74,6 +75,7 @@ export async function createCategoryAction(formData: FormData): Promise<void> {
     },
   });
 
+  await auditLog('category.create', {slug});
   revalidatePath('/admin/categories');
   revalidatePath('/', 'layout');
   redirect('/admin/categories');
@@ -103,6 +105,7 @@ export async function updateCategoryAction(formData: FormData): Promise<void> {
     });
   });
 
+  await auditLog('category.update', {id, sort});
   revalidatePath('/admin/categories');
   revalidatePath('/', 'layout');
   redirect('/admin/categories');
@@ -115,6 +118,7 @@ export async function toggleCategoryActiveAction(formData: FormData): Promise<vo
   if (!id) return;
 
   await db.category.update({where: {id}, data: {isActive: next}});
+  await auditLog('category.active.update', {id, isActive: next});
 
   revalidatePath('/admin/categories');
   revalidatePath('/', 'layout');
